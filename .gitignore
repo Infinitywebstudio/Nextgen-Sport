@@ -1,0 +1,13 @@
+# Backups (too large for GitHub)
+*.zip
+app/public/wp-content/wpvividbackups/
+
+# Logs
+logs/
+*.log
+
+# Local config (contains sensitive data)
+conf/
+
+# Database dumps
+*.sql
