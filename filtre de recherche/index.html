@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Search System - Démo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="talent-search-wrapper">
+        <!-- Layout avec filtres en haut et résultats en bas -->
+        <div class="talent-layout">
+            <!-- FILTRES EN HAUT -->
+            <div class="talent-sidebar">
+                <!-- Section Filtres en grille horizontale -->
+                <div class="talent-filters-container-wrapper" id="talent-filters-container"></div>
+
+                <!-- Saved Searches -->
+                <div class="talent-saved-searches">
+                    <label class="talent-saved-searches-title">Recherches sauvegardées</label>
+                    <div id="talent-saved-searches-list"></div>
+                    <button id="talent-save-current-search" class="talent-save-search-btn" disabled>
+                        Sauvegarder cette recherche
+                    </button>
+                </div>
+            </div>
+
+            <!-- RÉSULTATS EN BAS -->
+            <div class="talent-main-content">
+                <div class="talent-results-section">
+                    <div class="talent-results-header">
+                        <h3 class="talent-results-title">Talents disponibles</h3>
+                        <span id="talent-results-count" class="talent-results-count"></span>
+                    </div>
+
+                    <div id="talent-results" class="talent-results-grid">
+                        <div class="talent-loading">
+                            <p>Chargement des talents...</p>
+                        </div>
+                    </div>
+
+                    <!-- Bouton Voir tout / Charger plus -->
+                    <div id="talent-pagination" class="talent-pagination hidden">
+                        <button id="talent-load-more" class="talent-load-more-btn">
+                            Voir tout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sauvegarde -->
+    <div id="talent-modal-overlay" class="talent-modal-overlay">
+        <div class="talent-modal">
+            <h2 class="talent-modal-title">Sauvegarder cette recherche</h2>
+            <input
+                type="text"
+                id="talent-modal-input"
+                class="talent-modal-input"
+                placeholder="Nom de la recherche (ex: Football France 18-21)"
+            >
+            <div class="talent-modal-buttons">
+                <button id="talent-modal-cancel" class="talent-modal-btn">Annuler</button>
+                <button id="talent-modal-save" class="talent-modal-btn talent-modal-btn-primary">Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

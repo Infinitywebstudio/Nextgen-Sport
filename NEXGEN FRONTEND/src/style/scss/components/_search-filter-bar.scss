@@ -1,0 +1,612 @@
+// NEXTGEN Search Filter Bar Component
+// Barre de filtres horizontale avec dropdowns
+
+@use "../utils/variables" as *;
+
+// Couleurs
+$filter-bg: #ffffff;
+$filter-border: #e5e7eb;
+$filter-text: #374151;
+$filter-text-light: #6b7280;
+$filter-active: #FF6900;
+$filter-active-bg: #FFF4ED;
+$filter-hover: #f9fafb;
+
+.search-filter-bar {
+  width: 100%;
+  background-color: $filter-bg;
+}
+
+.search-filter-bar-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+
+  // Les 4 éléments prennent toute la largeur
+  > .filter-dropdown,
+  > .filter-location-input {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+// Dropdown de filtre
+.filter-dropdown {
+  position: relative;
+}
+
+// Bouton de filtre
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  height: 48px;
+  background-color: $filter-bg;
+  border: 1px solid $filter-border;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: $filter-text;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  width: 100%;
+
+  // Chevron à droite
+  .ti-chevron-down {
+    margin-left: auto;
+  }
+
+  i {
+    font-size: 16px;
+    color: $filter-text-light;
+  }
+
+  &:hover {
+    background-color: $filter-hover;
+    border-color: $filter-active;
+  }
+
+  &.active {
+    background-color: $filter-active-bg;
+    border-color: $filter-active;
+    color: $filter-active;
+
+    i {
+      color: $filter-active;
+    }
+  }
+}
+
+// Menu dropdown
+.filter-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background-color: $filter-bg;
+  border: 1px solid $filter-border;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 1000;
+  min-width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+// Contenu du dropdown
+.filter-dropdown-content {
+  padding: 8px;
+}
+
+// Champ de saisie localisation
+.filter-location-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  background-color: $filter-bg;
+  border: 1px solid $filter-border;
+  border-radius: 8px;
+  height: 48px;
+  transition: all 0.2s ease;
+
+  &:focus-within {
+    border-color: $filter-active;
+    box-shadow: 0 0 0 3px rgba($filter-active, 0.1);
+  }
+
+  > i {
+    font-size: 16px;
+    color: $filter-text-light;
+    flex-shrink: 0;
+  }
+
+  input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    color: $filter-text;
+    background: transparent;
+    padding: 0;
+
+    &::placeholder {
+      color: $filter-text-light;
+    }
+
+    &.has-value {
+      color: $filter-text;
+      font-weight: 500;
+    }
+  }
+
+  .clear-location {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: none;
+    background-color: #e5e7eb;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+
+    i {
+      font-size: 12px;
+      color: $filter-text;
+    }
+
+    &:hover {
+      background-color: #d1d5db;
+    }
+  }
+}
+
+// Checkbox label
+.filter-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: $filter-hover;
+  }
+
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: $filter-active;
+  }
+
+  span {
+    font-size: 14px;
+    color: $filter-text;
+  }
+}
+
+// Radio label (sélection unique)
+.filter-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: $filter-hover;
+  }
+
+  span {
+    font-size: 14px;
+    color: $filter-text;
+  }
+
+  // Custom radio button
+  .custom-radio {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+
+    &::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: transparent;
+      transition: background-color 0.2s ease;
+    }
+
+    &.checked {
+      border-color: $filter-active;
+
+      &::after {
+        background-color: $filter-active;
+      }
+    }
+  }
+}
+
+// Option de note
+.filter-rating-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: left;
+
+  &:hover {
+    background-color: $filter-hover;
+  }
+
+  .rating-stars {
+    display: flex;
+    gap: 2px;
+
+    i {
+      font-size: 14px;
+    }
+  }
+
+  span {
+    font-size: 14px;
+    color: $filter-text;
+  }
+}
+
+// Zone d'intervention slider
+.zone-dropdown {
+  min-width: 300px;
+}
+
+.zone-slider-container {
+  padding: 8px 4px;
+
+  .zone-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: $filter-text;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  // Dual slider container
+  .dual-slider-container {
+    position: relative;
+    height: 56px;
+    margin: 0 10px;
+    padding-top: 32px;
+
+    // Valeurs flottantes au-dessus des curseurs
+    .slider-value {
+      position: absolute;
+      top: 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: $filter-active;
+      white-space: nowrap;
+      z-index: 20;
+    }
+
+    // Track de fond
+    .slider-track {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 6px;
+      border-radius: 3px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    // Sliders superposés
+    .zone-slider {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      transform: translateY(-50%);
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      pointer-events: none;
+      outline: none;
+      margin: 0;
+      padding: 0;
+
+      // Webkit (Chrome, Safari, Edge)
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #ffffff;
+        cursor: pointer;
+        border: 3px solid $filter-active;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        pointer-events: auto;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        position: relative;
+        z-index: 10;
+        margin-top: -7px;
+
+        &:hover {
+          transform: scale(1.1);
+          box-shadow: 0 3px 10px rgba(255, 105, 0, 0.3);
+        }
+
+        &:active {
+          transform: scale(1.05);
+          box-shadow: 0 2px 8px rgba(255, 105, 0, 0.4);
+        }
+      }
+
+      &::-webkit-slider-runnable-track {
+        height: 6px;
+        background: transparent;
+        border-radius: 3px;
+      }
+
+      // Firefox
+      &::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #ffffff;
+        cursor: pointer;
+        border: 3px solid $filter-active;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        pointer-events: auto;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+        &:hover {
+          transform: scale(1.1);
+          box-shadow: 0 3px 10px rgba(255, 105, 0, 0.3);
+        }
+
+        &:active {
+          transform: scale(1.05);
+          box-shadow: 0 2px 8px rgba(255, 105, 0, 0.4);
+        }
+      }
+
+      &::-moz-range-track {
+        height: 6px;
+        background: transparent;
+        border: none;
+      }
+    }
+
+    // Z-index pour permettre aux deux sliders de fonctionner
+    .zone-slider-min {
+      z-index: 3;
+    }
+
+    .zone-slider-max {
+      z-index: 4;
+    }
+  }
+
+  .zone-range-labels {
+    display: flex;
+    justify-content: space-between;
+    margin: -12px 10px 0 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: $filter-text-light;
+  }
+}
+
+// Inputs de budget
+.budget-inputs {
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.budget-input-group {
+  flex: 1;
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: $filter-text-light;
+    margin-bottom: 4px;
+  }
+
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid $filter-border;
+    border-radius: 6px;
+    font-size: 14px;
+    color: $filter-text;
+
+    &:focus {
+      outline: none;
+      border-color: $filter-active;
+    }
+  }
+}
+
+// Wrapper pour positionner le bouton Effacer en haut à droite
+.filter-clear-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+// Bouton Effacer le filtre
+.filter-clear-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+
+  .clear-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: #e5e7eb;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+
+    i {
+      font-size: 12px;
+      color: $filter-text;
+    }
+  }
+
+  span:last-child {
+    font-size: 14px;
+    font-weight: 500;
+    color: $filter-text-light;
+  }
+
+  &:hover {
+    .clear-icon {
+      background-color: #d1d5db;
+    }
+
+    span:last-child {
+      color: $filter-text;
+    }
+  }
+}
+
+// Actions (Réinitialiser / Appliquer)
+.filter-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.filter-reset-btn,
+.filter-apply-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  white-space: nowrap;
+}
+
+.filter-reset-btn {
+  background-color: transparent;
+  color: $filter-text-light;
+  border: 1px solid $filter-border;
+
+  &:hover {
+    background-color: $filter-hover;
+  }
+}
+
+.filter-apply-btn {
+  background-color: $filter-active;
+  color: $white;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+// Badge de filtres actifs
+.active-filters-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  background-color: $filter-active;
+  color: $white;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .search-filter-bar-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-button {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .filter-dropdown-menu {
+    left: 0;
+    right: 0;
+    min-width: 100%;
+  }
+
+  .filter-clear-wrapper {
+    margin-bottom: 8px;
+  }
+
+  .filter-actions {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .filter-reset-btn,
+  .filter-apply-btn {
+    flex: 1;
+  }
+
+  .active-filters-badge {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+// Overlay pour fermer les dropdowns (optionnel)
+.filter-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: transparent;
+}

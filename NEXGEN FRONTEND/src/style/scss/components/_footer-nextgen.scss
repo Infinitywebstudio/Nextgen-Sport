@@ -1,0 +1,153 @@
+@use '../utils/variables' as *;
+
+// Footer NEXTGEN Component - Simplifié et fidèle au modèle
+.footer-nextgen {
+  width: 100%;
+  padding: 0 20px;
+  margin-top: 180px;
+  margin-bottom: 30px;
+  background-color: transparent;
+  color: #201D1D;
+
+  &.footer-dark {
+    background-color: transparent;
+  }
+
+  .footer-wrapper {
+    width: 100%;
+    background-color: #E8E8E8;
+    border-radius: 24px;
+    padding: 80px 60px 50px;
+  }
+
+  // Section des liens (3 colonnes en haut)
+  .footer-links-section {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 100px;
+    margin-bottom: 150px;
+  }
+
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-column-title {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 24px;
+    font-weight: 700;
+    color: #201D1D;
+    margin: 0 0 24px 0;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    li {
+      a {
+        font-family: 'Host Grotesk', $font-family-primary;
+        font-size: 18px;
+        font-weight: 400;
+        color: #201D1D;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  // Section logo et copyright (en bas)
+  .footer-brand-section {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo-large {
+    .logo-text-large {
+      font-family: 'Host Grotesk', $font-family-primary;
+      font-size: 140px;
+      font-weight: 900;
+      color: #201D1D;
+      margin: 0;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+  }
+
+  .copyright {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 20px;
+    font-weight: 400;
+    color: #201D1D;
+    margin: 0;
+    align-self: flex-end;
+    margin-bottom: 20px;
+  }
+}
+
+// Responsive Footer
+@media (max-width: 992px) {
+  .footer-nextgen {
+    .footer-wrapper {
+      padding: 60px 40px;
+    }
+
+    .footer-links-section {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px;
+      margin-bottom: 100px;
+    }
+
+    .footer-logo-large {
+      .logo-text-large {
+        font-size: 80px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-nextgen {
+    margin-top: 120px;
+
+    .footer-wrapper {
+      padding: 40px 20px;
+    }
+
+    .footer-links-section {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 80px;
+    }
+
+    .footer-brand-section {
+      flex-direction: column;
+      gap: 30px;
+      text-align: center;
+    }
+
+    .footer-logo-large {
+      .logo-text-large {
+        font-size: 60px;
+      }
+    }
+
+    .copyright {
+      font-size: 16px;
+    }
+  }
+}

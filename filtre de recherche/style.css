@@ -1,0 +1,646 @@
+* {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f9fafb;
+    color: #000000;
+}
+
+.talent-search-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background: #ffffff;
+}
+
+/* ===== HEADER / BARRE DE RECHERCHE ===== */
+.talent-search-header {
+    margin-bottom: 30px;
+}
+
+.talent-search-input {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #000000;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.talent-search-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background-color: #f9fafb;
+}
+
+.talent-search-input::placeholder {
+    color: #9ca3af;
+}
+
+/* ===== LAYOUT AVEC FILTRES EN HAUT ===== */
+.talent-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+/* ===== FILTRES EN HAUT ===== */
+.talent-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.talent-filters-container-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.talent-filters-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.talent-filters-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #000000;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.talent-clear-filters {
+    font-size: 11px;
+    font-weight: 500;
+    color: #3b82f6;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 0.2s ease;
+    text-decoration: underline;
+}
+
+.talent-clear-filters:hover {
+    color: #2563eb;
+}
+
+/* Dropdown personnalisé */
+.talent-filter-dropdown {
+    position: relative;
+}
+
+.talent-filter-dropdown-toggle {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000000;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.talent-filter-dropdown-toggle:hover {
+    border-color: #d1d5db;
+    background-color: #f9fafb;
+}
+
+.talent-filter-dropdown-toggle.active {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.talent-filter-dropdown-arrow {
+    margin-left: 8px;
+    transition: transform 0.2s ease;
+}
+
+.talent-filter-dropdown-toggle.active .talent-filter-dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.talent-filter-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 100;
+    display: none;
+}
+
+.talent-filter-dropdown-menu.active {
+    display: block;
+}
+
+.talent-filter-dropdown-item {
+    padding: 10px 16px;
+    font-size: 14px;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.talent-filter-dropdown-item:hover {
+    background-color: #f3f4f6;
+}
+
+.talent-filter-dropdown-item input[type="checkbox"] {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.talent-filter-dropdown-item.selected {
+    background-color: #eff6ff;
+    color: #1e40af;
+    font-weight: 500;
+}
+
+.talent-filter-selected-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3b82f6;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    min-width: 20px;
+}
+
+/* ===== SAVED SEARCHES ===== */
+.talent-saved-searches {
+    padding: 20px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+}
+
+.talent-saved-searches-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #000000;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.talent-saved-search-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    background: #ffffff;
+    border: 1px solid #dbeafe;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    gap: 8px;
+}
+
+.talent-saved-search-item:last-child {
+    margin-bottom: 0;
+}
+
+.talent-saved-search-name {
+    cursor: pointer;
+    color: #3b82f6;
+    flex: 1;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.talent-saved-search-name:hover {
+    color: #2563eb;
+}
+
+.talent-delete-saved {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.talent-delete-saved:hover {
+    color: #dc2626;
+}
+
+.talent-save-search-btn {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: 1px solid #3b82f6;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 12px;
+}
+
+.talent-save-search-btn:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+
+.talent-save-search-btn:disabled {
+    background-color: #d1d5db;
+    border-color: #d1d5db;
+    cursor: not-allowed;
+}
+
+/* ===== MAIN CONTENT ===== */
+.talent-main-content {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== RÉSULTATS ===== */
+.talent-results-section {
+    margin-top: 0;
+}
+
+.talent-results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+.talent-results-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+}
+
+.talent-results-count {
+    font-size: 13px;
+    font-weight: 500;
+    color: #6b7280;
+    background-color: #f3f4f6;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.talent-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    margin: 0;
+}
+
+/* ===== CARTES TALENTS ===== */
+.talent-card {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.talent-card:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.talent-card-header {
+    padding: 20px;
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.talent-card-title-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.talent-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.talent-card-sports {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.talent-tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.talent-tag-sport {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.talent-tag-sport:hover {
+    background-color: #bfdbfe;
+}
+
+.talent-card-body {
+    padding: 20px;
+    flex: 1;
+}
+
+.talent-card-excerpt {
+    font-size: 14px;
+    font-weight: 400;
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.talent-card-footer {
+    padding: 20px;
+    border-top: 1px solid #e5e7eb;
+    background-color: #fafbfc;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.talent-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.talent-card-info-item {
+    font-size: 13px;
+    font-weight: 500;
+    color: #000000;
+    display: flex;
+    gap: 8px;
+}
+
+.talent-info-label {
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.talent-info-value {
+    color: #000000;
+    font-weight: 500;
+}
+
+.talent-card-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 16px;
+    background-color: #3b82f6;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    border: 1px solid #3b82f6;
+    cursor: pointer;
+}
+
+.talent-card-link:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+
+/* ===== PAGINATION ===== */
+.talent-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.talent-load-more-btn {
+    padding: 12px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #ffffff;
+    color: #3b82f6;
+    border: 2px solid #3b82f6;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.talent-load-more-btn:hover {
+    background-color: #eff6ff;
+    border-color: #2563eb;
+    color: #2563eb;
+}
+
+.talent-load-more-btn:active {
+    transform: scale(0.98);
+}
+
+.talent-pagination.hidden {
+    display: none;
+}
+
+/* ===== MESSAGES VIDES ===== */
+.talent-loading,
+.talent-no-results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.talent-loading p,
+.talent-no-results p {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* ===== MODAL SAUVEGARDE ===== */
+.talent-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.talent-modal-overlay.active {
+    display: flex;
+}
+
+.talent-modal {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.talent-modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.talent-modal-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.talent-modal-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.talent-modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.talent-modal-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #ffffff;
+    color: #000000;
+}
+
+.talent-modal-btn-primary {
+    background-color: #3b82f6;
+    color: #ffffff;
+    border-color: #3b82f6;
+}
+
+.talent-modal-btn-primary:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+
+.talent-modal-btn:hover {
+    border-color: #d1d5db;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .talent-filters-container-wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .talent-search-wrapper {
+        padding: 30px 16px;
+    }
+
+    .talent-filters-container-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .talent-results-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .talent-results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .talent-card-title {
+        font-size: 15px;
+    }
+
+    .talent-card-excerpt {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .talent-search-wrapper {
+        padding: 20px 12px;
+    }
+
+    .talent-search-input {
+        font-size: 16px;
+    }
+}

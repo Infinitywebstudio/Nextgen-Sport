@@ -1,0 +1,1154 @@
+@use '../utils/variables' as *;
+
+// Hero Section Home 3
+.hero-section-home3 {
+  min-height: 100vh;
+  background-image: url('/frame-22.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  .hero-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 60px 20px 60px;
+  }
+
+  .hero-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 100px;
+  }
+
+  // Bloc du haut (titre + bouton)
+  .hero-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .hero-title {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: $white;
+    margin: 0;
+    max-width: 700px;
+    line-height: 1.2;
+  }
+
+  .hero-button {
+    // Styles personnalisés si nécessaire
+  }
+
+  // Bloc du bas (NEXTGEN + tagline)
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+  }
+
+  .hero-brand {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 121px;
+    font-weight: 900;
+    color: $white;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .hero-tagline {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 24px;
+    font-weight: 500;
+    color: $white;
+    margin: 0;
+    padding-left: 50px;
+    max-width: 400px;
+    line-height: 1.3;
+  }
+}
+
+// Responsive
+@media (max-width: 992px) {
+  .hero-section-home3 {
+    .hero-container {
+      padding: 0 40px 20px 40px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      max-width: 100%;
+    }
+
+    .hero-content {
+      gap: 80px;
+    }
+
+    .hero-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .hero-brand {
+      font-size: 80px;
+    }
+
+    .hero-tagline {
+      font-size: 20px;
+      max-width: 100%;
+      padding-left: 0;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section-home3 {
+    .hero-container {
+      padding: 0 20px 40px 20px;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-content {
+      gap: 60px;
+    }
+
+    .hero-top {
+      gap: 20px;
+    }
+
+    .hero-brand {
+      font-size: 60px;
+    }
+
+    .hero-tagline {
+      font-size: 18px;
+      padding-left: 0;
+    }
+  }
+}
+
+// Categories Section Home 3
+.categories-section-home3 {
+  padding: 140px 0 100px 0;
+  background-color: $white;
+
+  .categories-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .categories-heading {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: calc(2.5rem + 3px);
+    font-weight: 700;
+    color: $title-color;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .category-item {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+// Responsive Categories
+@media (max-width: 992px) {
+  .categories-section-home3 {
+    padding: 100px 0 80px 0;
+
+    .categories-container {
+      padding: 0 40px;
+    }
+
+    .categories-heading {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+
+    .categories-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .categories-section-home3 {
+    padding: 80px 0 60px 0;
+
+    .categories-container {
+      padding: 0 20px;
+    }
+
+    .categories-heading {
+      font-size: 1.75rem;
+      margin-bottom: 30px;
+    }
+
+    .categories-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+}
+
+// Promo Section Home 3
+.promo-section-home3 {
+  padding: 80px 0;
+  background-color: $white;
+
+  .promo-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .promo-card {
+    background-image: url('/promo-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    padding: 60px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .promo-title {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $white;
+    margin: 0;
+    max-width: 600px;
+    line-height: 1.2;
+  }
+
+  .promo-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+  }
+
+  .promo-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .promo-text {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: $white;
+    margin: 0;
+    max-width: 500px;
+    line-height: 1.6;
+  }
+
+  .promo-button {
+    align-self: flex-start;
+  }
+
+  .promo-stat {
+    background-color: $white;
+    border-radius: 10px;
+    padding: 24px 32px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .promo-stat-number {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $pink;
+    margin: 0 0 8px 0;
+    line-height: 1;
+  }
+
+  .promo-stat-label {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $title-color;
+    margin: 0;
+    line-height: 1.4;
+  }
+}
+
+// Responsive Promo Section
+@media (max-width: 992px) {
+  .promo-section-home3 {
+    padding: 60px 0;
+
+    .promo-container {
+      padding: 0 40px;
+    }
+
+    .promo-card {
+      padding: 40px;
+      min-height: 350px;
+    }
+
+    .promo-title {
+      font-size: 2rem;
+      max-width: 100%;
+    }
+
+    .promo-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+    .promo-stat {
+      align-self: flex-start;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .promo-section-home3 {
+    padding: 40px 0;
+
+    .promo-container {
+      padding: 0 20px;
+    }
+
+    .promo-card {
+      padding: 30px;
+      min-height: 300px;
+      gap: 30px;
+    }
+
+    .promo-title {
+      font-size: 1.75rem;
+    }
+
+    .promo-text {
+      font-size: 1rem;
+    }
+
+    .promo-bottom {
+      gap: 24px;
+    }
+
+    .promo-stat {
+      padding: 20px 28px;
+    }
+
+    .promo-stat-number {
+      font-size: 2rem;
+    }
+  }
+}
+
+// New Section
+.new-section {
+  width: 100%;
+  padding: 0 20px;
+  margin-top: 80px;
+
+  .new-section-container {
+    width: 100%;
+    height: 80vh;
+    padding: 40px;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .new-section-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .new-section-title {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: calc(2.5rem + 3px);
+    font-weight: 600;
+    color: $white;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .new-section-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 40px;
+    width: 100%;
+  }
+
+  .new-section-bottom-left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .new-section-text {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 24px;
+    font-weight: 500;
+    color: $white;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .new-section-button {
+    background-color: #F4D35E !important;
+    color: #000 !important;
+    border-color: #F4D35E !important;
+
+    &:hover {
+      background-color: #F4D35E !important;
+      border-color: #F4D35E !important;
+    }
+
+    // Texte du bouton noir
+    .btn-nextgen-text {
+      color: #000 !important;
+    }
+
+    // Icône flèche noire avec cercle blanc
+    .btn-nextgen-icon {
+      background-color: $white !important;
+
+      i {
+        color: #000 !important;
+      }
+    }
+  }
+
+  .new-section-square {
+    width: 230px;
+    background-color: $white;
+    border-radius: 10px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px;
+  }
+
+  .square-number {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 62px;
+    font-weight: 700;
+    color: #FF6961;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .square-text {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 20px;
+    font-weight: 500;
+    color: $gray-800;
+    margin: 0;
+    text-align: center;
+    line-height: 1.3;
+  }
+}
+
+// Difference Section
+.difference-section {
+  width: 100%;
+  padding: 0 20px;
+  margin-top: 180px;
+
+  .difference-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 80px;
+    align-items: stretch;
+  }
+
+  .difference-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .circle-images {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .circle-image {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .circle-1 {
+    position: relative;
+    z-index: 2;
+  }
+
+  .circle-2 {
+    position: relative;
+    z-index: 1;
+    margin-left: -50px; // Overlap effect
+  }
+
+  .difference-right {
+    flex: 0.6;
+    background-color: #201D1D;
+    border-radius: 18px;
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    text-align: center;
+  }
+
+  .difference-title {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: calc(2.5rem + 3px);
+    font-weight: 700;
+    color: $white;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .difference-text {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 18px;
+    font-weight: 400;
+    color: $white;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .difference-white-box {
+    width: 70%;
+    height: 200px;
+    background-color: $white;
+    border-radius: 18px;
+    margin-top: 20px;
+    position: relative;
+    bottom: -80px; // Dépasse en dessous
+  }
+}
+
+// Connect Section
+.connect-section {
+  width: 100%;
+  padding: 0 20px;
+  margin-top: 180px;
+
+  .connect-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .connect-title {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: calc(2.5rem + 3px);
+    font-weight: 700;
+    color: #FF6961;
+    margin: 0;
+    line-height: 1;
+  }
+}
+
+// Three Columns Section
+.three-columns-section {
+  width: 100%;
+  padding: 0 20px;
+  margin-top: 180px;
+
+  .three-columns-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+    height: 400px;
+  }
+
+  .column-left {
+    flex: 2;
+    background-image: url('/berkeley-communications-WEDDt-u3q3o-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .column-left-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px;
+  }
+
+  .column-left-title {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: calc(2.5rem + 3px);
+    font-weight: 700;
+    color: $white;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .column-left-text {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 18px;
+    font-weight: 400;
+    color: $white;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .column-right-top {
+    flex: 1;
+    background-color: #FCF6F4;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+  }
+
+  .column-right-top-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .column-right-top-title {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 30px;
+    font-weight: 600;
+    color: #201D1D;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .column-right-top-stat {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 52px;
+    font-weight: 400;
+    color: #201D1D;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .column-right-top-image {
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 180px;
+      display: block;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  }
+
+  .column-right-bottom {
+    flex: 1;
+    background-image: url('/full-shot-man-playing-with-dog-outdoors.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .column-right-bottom-inner {
+    position: relative;
+    min-width: 280px;
+    min-height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .liquidGlass-effect {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    border-radius: 12px;
+    backdrop-filter: blur(3px);
+    filter: url(#glass-distortion);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .liquidGlass-tint {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .liquidGlass-shine {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .liquidGlass-content {
+    position: relative;
+    z-index: 3;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .glass-title {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 30px;
+    font-weight: 600;
+    color: $white;
+    margin: 0;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .glass-text {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 18px;
+    font-weight: 400;
+    color: $white;
+    margin: 0;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .glass-stat {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 52px;
+    font-weight: 400;
+    color: $white;
+    padding: 4px 24px;
+    border-radius: 50px;
+    border: 2px solid $white;
+    margin-top: 8px;
+  }
+}
+
+// Two Columns Section
+.two-columns-section {
+  width: 100%;
+  padding: 0 20px;
+  margin-top: 180px;
+
+  .two-columns-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+  }
+
+  .two-columns-image {
+    flex: 1;
+    border-radius: 14px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .two-columns-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    padding: 40px;
+  }
+
+  .two-columns-title {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: calc(2.5rem + 3px);
+    font-weight: 700;
+    color: #201D1D;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .two-columns-description {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 18px;
+    font-weight: 400;
+    color: #201D1D;
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+// Responsive Three Columns Section
+@media (max-width: 992px) {
+  .three-columns-section {
+    margin-top: 150px;
+
+    .three-columns-container {
+      flex-direction: column;
+      height: auto;
+      gap: 20px;
+    }
+
+    .column-left,
+    .column-right-top,
+    .column-right-bottom {
+      min-height: 300px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .three-columns-section {
+    margin-top: 120px;
+    padding: 0 10px;
+
+    .column-left,
+    .column-right-top,
+    .column-right-bottom {
+      min-height: 250px;
+    }
+  }
+}
+
+// Responsive Connect Section
+@media (max-width: 992px) {
+  .connect-section {
+    margin-top: 150px;
+
+    .connect-title {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .connect-section {
+    margin-top: 120px;
+    padding: 0 10px;
+
+    .connect-title {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+// Responsive Difference Section
+@media (max-width: 992px) {
+  .difference-section {
+    margin-top: 150px;
+
+    .difference-container {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .circle-image {
+      width: 150px;
+      height: 150px;
+    }
+
+    .difference-right {
+      padding: 40px 30px;
+    }
+
+    .difference-title {
+      font-size: 2rem;
+    }
+
+    .difference-text {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .difference-section {
+    margin-top: 120px;
+    padding: 0 10px;
+
+    .circle-image {
+      width: 120px;
+      height: 120px;
+    }
+
+    .circle-2 {
+      margin-left: -40px;
+    }
+
+    .difference-right {
+      padding: 30px 20px;
+    }
+
+    .difference-title {
+      font-size: 1.75rem;
+    }
+
+    .difference-white-box {
+      height: 150px;
+      bottom: -60px;
+    }
+  }
+}
+
+// Responsive New Section
+@media (max-width: 992px) {
+  .new-section {
+    margin-top: 70px;
+
+    .new-section-title {
+      font-size: 2rem;
+    }
+
+    .new-section-text {
+      font-size: 20px;
+    }
+
+    .new-section-square {
+      width: 180px;
+    }
+
+    .square-number {
+      font-size: 48px;
+    }
+
+    .square-text {
+      font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .new-section {
+    padding: 0 10px;
+    margin-top: 60px;
+
+    .new-section-container {
+      height: 50vh;
+      padding: 20px;
+    }
+
+    .new-section-title {
+      font-size: 1.75rem;
+    }
+
+    .new-section-text {
+      font-size: 18px;
+    }
+
+    .new-section-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .new-section-square {
+      display: none;
+    }
+  }
+}
+
+// Responsive Two Columns Section
+@media (max-width: 992px) {
+  .two-columns-section {
+    margin-top: 150px;
+
+    .two-columns-container {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .two-columns-image {
+      min-height: 300px;
+    }
+
+    .two-columns-text {
+      padding: 30px;
+    }
+
+    .two-columns-title {
+      font-size: 2rem;
+    }
+
+    .two-columns-description {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .two-columns-section {
+    margin-top: 120px;
+    padding: 0 10px;
+
+    .two-columns-image {
+      min-height: 250px;
+    }
+
+    .two-columns-text {
+      padding: 20px;
+    }
+
+    .two-columns-title {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+// CTA Section
+.cta-section {
+  padding: 60px 0;
+  margin-top: 180px; // Ajout de la marge supérieure
+  background-color: $white; // Fond blanc
+
+  .cta-container {
+    max-width: 1400px; // Largeur augmentée
+    margin: 0 auto;
+    padding: 0 60px; // Padding horizontal ajusté
+    background-color: #EBCB5A; // Jaune moutarde doux
+    border-radius: 2rem; // 32px
+    text-align: center;
+    padding-top: 6rem; // 96px (augmenté)
+    padding-bottom: 6rem; // 96px (augmenté)
+  }
+
+  .cta-title {
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-size: 2.5rem; // ~text-4xl
+    font-weight: 700; // font-bold
+    color: #201D1D; // Noir/anthracite
+    margin: 0 auto 2rem auto; // mb-8
+    max-width: 600px;
+    line-height: 1.2;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF6B6B; // Rouge corail
+    color: $white;
+    font-family: 'Host Grotesk', $font-family-primary;
+    font-weight: 600;
+    font-size: 1.125rem; // Taille de police augmentée
+    padding: 1rem 1.5rem; // ~px-6 py-4
+    border-radius: 0.75rem; // rounded-xl
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    cursor: pointer;
+    text-decoration: none; // Pour les balises <a>
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .cta-button-icon {
+      margin-left: 1rem; // ml-4
+      background-color: $white;
+      color: #201D1D; // Icone noire
+      border-radius: 0.375rem; // rounded-md
+      padding: 0.5rem; // p-2
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+// Responsive CTA Section
+@media (max-width: 768px) {
+  .cta-section {
+    .cta-container {
+      padding: 3rem 1.5rem;
+      border-radius: 1.5rem;
+    }
+    .cta-title {
+      font-size: 1.875rem; // ~text-3xl
+    }
+    .cta-button {
+      padding: 0.875rem 1.25rem;
+    }
+  }
+}
