@@ -28,6 +28,7 @@
 @use "layout/sidebar";
 @use "layout/notification";
 @use "layout/theme";
+@use "layout/sidebar-nextgen";
 
 /******* Vendors ******/
 @use "vendors/select2";
@@ -45,6 +46,9 @@
 @use "pages/portfolio";
 @use "pages/settings";
 @use "pages/price";
+@use "pages/pricing-nextgen";
+@use "pages/talent-profile";
+@use "pages/search-talents";
 @use "pages/profile";
 @use "pages/login";
 @use "pages/chat";
@@ -57,8 +61,12 @@
 @use "pages/team";
 
 /******* NEXTGEN Custom Components ******/
+@use "components/header-nextgen";
+@use "components/footer-nextgen";
 @use "pages/nextgen-components";
 @use "pages/test-nextgen";
+@use "pages/auth-nextgen";
+@use "pages/dashboard-nextgen";
 @use "pages/provider-profile";
 
 

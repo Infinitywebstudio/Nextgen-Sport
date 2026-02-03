@@ -1,45 +1,46 @@
-import { useState, useEffect } from 'react';
-import CategoryCard from '../../../components/nextgen/CategoryCard';
-import { getHierarchicalCategories } from '../../../services/category.service';
+import { Link } from 'react-router-dom';
+import footballImg from '../../../assets/img/homepage/football.png';
+import handballImg from '../../../assets/img/homepage/handball.png';
+import boxeImg from '../../../assets/img/homepage/boxe.png';
+import basketballImg from '../../../assets/img/homepage/basketball.png';
+import taekwondoImg from '../../../assets/img/homepage/taekwondo.png';
+import arrowIcon from '../../../assets/img/homepage/right-arrow.svg';
 
-interface Category {
-  id: number;
-  name: string;
-  slug: string;
-  // Les autres propriétés peuvent être ajoutées ici si nécessaire
-}
+const categories = [
+  { name: 'Football', image: footballImg, slug: 'football' },
+  { name: 'Handball', image: handballImg, slug: 'handball' },
+  { name: 'Boxe', image: boxeImg, slug: 'boxe' },
+  { name: 'Basketball', image: basketballImg, slug: 'basketball' },
+  { name: 'Taekwondo', image: taekwondoImg, slug: 'taekwondo' },
+  { name: 'Athlétisme', image: taekwondoImg, slug: 'athletisme' },
+];
 
 const CategoriesSection = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const fetchedCategories = await getHierarchicalCategories();
-      // Pour cette section, nous n'affichons que les catégories parentes (Rubriques)
-      setCategories(fetchedCategories);
-    };
-
-    fetchCategories();
-  }, []);
-
   return (
-    <section className="categories-section-home3">
-      <div className="categories-container">
-        <h2 className="categories-heading">Choisissez selon vos besoins</h2>
-
-        <div className="categories-grid">
-          {categories.map((category) => (
-            <div key={category.id} className="category-item">
-              <CategoryCard
-                title={category.name}
-                // La logique d'image suppose que les images sont nommées comme les catégories.
-                // Exemple: "Bricolage" -> "/Bricolage.png"
-                image={`/${category.name}.png`}
-                imageAlt={`Catégorie ${category.name}`}
-                buttonText="Découvrir"
-                href={`/category/${category.slug}`} // Ajout d'un lien vers la page de la catégorie
-              />
-            </div>
+    <section className="nex-categories">
+      <div className="nex-categories__container">
+        <h2 className="nex-categories__title nex-title">
+          EXPLORER PAR CATÉGORIE
+        </h2>
+        <div className="nex-categories__grid">
+          {categories.map((cat) => (
+            <Link
+              to={`/search?category=${cat.slug}`}
+              key={cat.slug}
+              className="nex-category-card"
+            >
+              <div className="nex-category-card__info">
+                <h4 className="nex-category-card__name nex-title">
+                  {cat.name}
+                </h4>
+                <span className="nex-category-card__arrow">
+                  <img src={arrowIcon} alt="" />
+                </span>
+              </div>
+              <div className="nex-category-card__image">
+                <img src={cat.image} alt={cat.name} />
+              </div>
+            </Link>
           ))}
         </div>
       </div>

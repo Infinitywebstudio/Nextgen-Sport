@@ -1,33 +1,35 @@
 @use '../utils/variables' as *;
 
-// Footer NEXTGEN Component - Simplifié et fidèle au modèle
+// ============================================
+// NEXTGEN Footer
+// ============================================
+$nex-font-heading: 'Oswald', 'Host Grotesk', $font-family-primary;
+$nex-font-body: 'DM Sans', 'Host Grotesk', $font-family-primary;
+$nex-dark: #161616;
+$nex-red: #EE2731;
+
 .footer-nextgen {
   width: 100%;
   padding: 0 20px;
-  margin-top: 180px;
+  margin-top: 120px;
   margin-bottom: 30px;
   background-color: transparent;
-  color: #201D1D;
-
-  &.footer-dark {
-    background-color: transparent;
-  }
+  color: $nex-dark;
 
   .footer-wrapper {
     width: 100%;
-    background-color: #E8E8E8;
+    background-color: $nex-dark;
     border-radius: 24px;
     padding: 80px 60px 50px;
   }
 
-  // Section des liens (3 colonnes en haut)
   .footer-links-section {
     max-width: 1500px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 100px;
-    margin-bottom: 150px;
+    margin-bottom: 120px;
   }
 
   .footer-column {
@@ -36,10 +38,12 @@
   }
 
   .footer-column-title {
-    font-family: 'Host Grotesk', $font-family-primary;
-    font-size: 24px;
+    font-family: $nex-font-heading;
+    font-size: 22px;
     font-weight: 700;
-    color: #201D1D;
+    color: $white;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
     margin: 0 0 24px 0;
   }
 
@@ -49,39 +53,39 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
 
-    li {
-      a {
-        font-family: 'Host Grotesk', $font-family-primary;
-        font-size: 18px;
-        font-weight: 400;
-        color: #201D1D;
-        text-decoration: none;
-        transition: color 0.3s ease;
+    li a {
+      font-family: $nex-font-body;
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: color 0.2s ease;
 
-        &:hover {
-          color: $primary;
-        }
+      &:hover {
+        color: $white;
       }
     }
   }
 
-  // Section logo et copyright (en bas)
   .footer-brand-section {
     max-width: 1500px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 40px;
   }
 
   .footer-logo-large {
     .logo-text-large {
-      font-family: 'Host Grotesk', $font-family-primary;
-      font-size: 140px;
-      font-weight: 900;
-      color: #201D1D;
+      font-family: $nex-font-heading;
+      font-size: 120px;
+      font-weight: 700;
+      color: $white;
+      text-transform: uppercase;
       margin: 0;
       line-height: 1;
       letter-spacing: -0.02em;
@@ -89,19 +93,19 @@
   }
 
   .copyright {
-    font-family: 'Host Grotesk', $font-family-primary;
-    font-size: 20px;
+    font-family: $nex-font-body;
+    font-size: 14px;
     font-weight: 400;
-    color: #201D1D;
-    margin: 0;
-    align-self: flex-end;
-    margin-bottom: 20px;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0 0 12px 0;
   }
 }
 
-// Responsive Footer
+// Responsive
 @media (max-width: 992px) {
   .footer-nextgen {
+    margin-top: 80px;
+
     .footer-wrapper {
       padding: 60px 40px;
     }
@@ -109,45 +113,43 @@
     .footer-links-section {
       grid-template-columns: repeat(2, 1fr);
       gap: 60px;
-      margin-bottom: 100px;
+      margin-bottom: 80px;
     }
 
-    .footer-logo-large {
-      .logo-text-large {
-        font-size: 80px;
-      }
+    .footer-logo-large .logo-text-large {
+      font-size: 80px;
     }
   }
 }
 
 @media (max-width: 768px) {
   .footer-nextgen {
-    margin-top: 120px;
+    margin-top: 60px;
+    padding: 0 12px;
 
     .footer-wrapper {
-      padding: 40px 20px;
+      padding: 40px 24px;
     }
 
     .footer-links-section {
       grid-template-columns: 1fr;
       gap: 40px;
-      margin-bottom: 80px;
+      margin-bottom: 60px;
     }
 
     .footer-brand-section {
       flex-direction: column;
-      gap: 30px;
+      align-items: center;
+      gap: 16px;
       text-align: center;
     }
 
-    .footer-logo-large {
-      .logo-text-large {
-        font-size: 60px;
-      }
+    .footer-logo-large .logo-text-large {
+      font-size: 56px;
     }
 
     .copyright {
-      font-size: 16px;
+      font-size: 13px;
     }
   }
 }

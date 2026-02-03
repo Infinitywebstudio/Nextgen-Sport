@@ -1,10 +1,12 @@
 import { Route, Routes } from 'react-router'
-import { authRoutes, buyerRoutes, publicRoutes, sellerRoutes } from './router.link';
+import { authRoutes, buyerRoutes, publicRoutes, sellerRoutes, talentRoutes, recruteurRoutes } from './router.link';
 // import AuthFeature from '../authFeature';
 import AuthApp from '../authApp';
 import FeatureApp from '../featureApp';
 import BuyerFeature from '../buyerFeature';
 import SellerFeature from '../sellerFeature';
+import TalentFeature from '../talentFeature';
+import RecruteurFeature from '../recruteurFeature';
 
 const ALLRoutes: React.FC = () => {
 
@@ -28,6 +30,16 @@ const ALLRoutes: React.FC = () => {
         </Route>
         <Route  element={<SellerFeature />}>
           {sellerRoutes.map((route, idx) => (
+            <Route path={route.path} element={route.element} key={idx} />
+          ))}
+        </Route>
+        <Route element={<TalentFeature />}>
+          {talentRoutes.map((route, idx) => (
+            <Route path={route.path} element={route.element} key={idx} />
+          ))}
+        </Route>
+        <Route element={<RecruteurFeature />}>
+          {recruteurRoutes.map((route, idx) => (
             <Route path={route.path} element={route.element} key={idx} />
           ))}
         </Route>

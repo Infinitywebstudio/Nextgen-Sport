@@ -30,6 +30,8 @@ export const all_routes ={
   termCondition: "/pages/term-condition",
   underCondition: "/pages/under-condition",
   pricing: "/pages/pricing",
+  pricingTalent: "/pricing/talent",
+  pricingRecruteur: "/pricing/recruteur",
   privacyPolicy: "/pages/privacy-policy",
   signIn:"/pages/signin",
   signUp:"/pages/signup",
@@ -54,6 +56,8 @@ export const all_routes ={
   serviceGridSidebar: '/gigs/service-grid-sidebar',
   serviceSubCategory: '/gigs/service-sub-category',
   providerProfile: '/gigs/provider/:id',
+  searchTalents: '/search',
+  talentProfile: '/talent/:id',
   checkoutgigs:"/gigs/gigs-checkout",
   gigsorderSuccessful:"/gigs/gigs-order-successful",
   //blog routes
@@ -87,8 +91,17 @@ buyerPayments : '/buyer/paiements',
 buyerProfile : '/buyer/profil',
 buyerSettings : '/buyer/parametres',
 
-//seller Module
+//talent Module (NEXTGEN)
 talentDashboard: "/talent/dashboard",
+talentMyProfile: "/talent/profil",
+
+//recruteur Module (NEXTGEN)
+recruteurTalents: "/recruteur/talents",
+recruteurMessages: "/recruteur/messagerie",
+recruteurAccount: "/recruteur/compte",
+recruteurPayment: "/recruteur/paiement",
+
+//seller Module (legacy)
 SellerDashboard:"/seller/seller-dashboard",
 sellerMessage: "/seller/seller-message",
 sellerNotifications: "/seller/seller-notifications",

@@ -1,0 +1,391 @@
+@use '../utils/variables' as *;
+
+// ============================================
+// NEXTGEN Auth Pages (Sign In / Sign Up)
+// ============================================
+$nex-font-heading: 'Oswald', 'Host Grotesk', $font-family-primary;
+$nex-font-body: 'DM Sans', 'Host Grotesk', $font-family-primary;
+$nex-red: #EE2731;
+$nex-dark: #161616;
+
+// ============================================
+// PAGE WRAPPER – white, centered, with header/footer
+// ============================================
+.nex-auth-page {
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px;
+}
+
+// ============================================
+// CONTAINER
+// ============================================
+.nex-auth-container {
+  width: 100%;
+  max-width: 480px;
+}
+
+// ============================================
+// CARD
+// ============================================
+.nex-auth-card {
+  width: 100%;
+  background: $white;
+  border: 2px solid $nex-dark;
+  border-radius: 5px;
+  padding: 40px;
+}
+
+// ============================================
+// TITLE & SUBTITLE
+// ============================================
+.nex-auth-title {
+  font-family: $nex-font-heading;
+  font-size: 32px;
+  font-weight: 700;
+  color: $nex-dark;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.nex-auth-subtitle {
+  font-family: $nex-font-body;
+  font-size: 15px;
+  color: #6b7280;
+  margin: 0 0 28px;
+}
+
+// ============================================
+// FORM FIELDS
+// ============================================
+.nex-auth-field {
+  margin-bottom: 18px;
+
+  label {
+    display: block;
+    font-family: $nex-font-body;
+    font-size: 13px;
+    font-weight: 600;
+    color: $nex-dark;
+    margin-bottom: 6px;
+  }
+
+  &__input-wrap {
+    position: relative;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: $nex-font-body;
+    font-size: 14px;
+    color: $nex-dark;
+    background: $white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+
+    &:focus {
+      border-color: $nex-red;
+      box-shadow: 0 0 0 3px rgba($nex-red, 0.1);
+    }
+
+    &:disabled {
+      background-color: #f9fafb;
+      cursor: not-allowed;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #9ca3af;
+    transition: color 0.2s;
+    background: none;
+    border: none;
+    padding: 0;
+    display: flex;
+
+    &:hover {
+      color: $nex-dark;
+    }
+  }
+}
+
+// ============================================
+// ACCOUNT TYPE TOGGLE
+// ============================================
+.nex-auth-toggle {
+  margin-bottom: 22px;
+
+  label {
+    display: block;
+    font-family: $nex-font-body;
+    font-size: 13px;
+    font-weight: 600;
+    color: $nex-dark;
+    margin-bottom: 8px;
+  }
+
+  &__wrap {
+    position: relative;
+    display: flex;
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    padding: 4px;
+  }
+
+  &__slider {
+    position: absolute;
+    top: 4px;
+    width: calc(50% - 6px);
+    height: calc(100% - 8px);
+    background-color: $nex-red;
+    border-radius: 6px;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &--left {
+      left: 4px;
+    }
+
+    &--right {
+      left: calc(50% + 2px);
+    }
+  }
+
+  &__btn {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    font-family: $nex-font-body;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+    color: #64748b;
+
+    &--active {
+      color: $white;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}
+
+// ============================================
+// ROW (2 columns)
+// ============================================
+.nex-auth-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+// ============================================
+// ERROR
+// ============================================
+.nex-auth-error {
+  background: rgba($nex-red, 0.06);
+  border: 1px solid rgba($nex-red, 0.2);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+
+  p {
+    font-family: $nex-font-body;
+    font-size: 13px;
+    color: $nex-red;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+// ============================================
+// SUBMIT BUTTON
+// ============================================
+.nex-auth-submit {
+  width: 100%;
+  padding: 14px 24px;
+  background-color: $nex-red;
+  color: $white;
+  font-family: $nex-font-body;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &:hover {
+    background-color: darken($nex-red, 8%);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+// ============================================
+// DIVIDER
+// ============================================
+.nex-auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 22px 0;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e5e7eb;
+  }
+
+  span {
+    font-family: $nex-font-body;
+    font-size: 13px;
+    color: #9ca3af;
+    padding: 0 16px;
+    white-space: nowrap;
+  }
+}
+
+// ============================================
+// GOOGLE BUTTON
+// ============================================
+.nex-auth-google {
+  width: 100%;
+  padding: 12px 20px;
+  background: $white;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: $nex-font-body;
+  font-size: 14px;
+  font-weight: 500;
+  color: $nex-dark;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    border-color: #d1d5db;
+    background-color: #fafafa;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+// ============================================
+// LINKS
+// ============================================
+.nex-auth-links {
+  text-align: center;
+  margin-top: 22px;
+
+  p {
+    font-family: $nex-font-body;
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0 0 6px;
+
+    a {
+      color: $nex-red;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// ============================================
+// TERMS CHECKBOX
+// ============================================
+.nex-auth-terms {
+  margin-bottom: 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  input[type='checkbox'] {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    accent-color: $nex-red;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  label {
+    font-family: $nex-font-body;
+    font-size: 13px;
+    color: #6b7280;
+    cursor: pointer;
+    line-height: 1.5;
+
+    a {
+      color: $nex-red;
+      text-decoration: underline;
+
+      &:hover {
+        color: darken($nex-red, 10%);
+      }
+    }
+  }
+}
+
+// ============================================
+// RESPONSIVE
+// ============================================
+@media (max-width: 576px) {
+  .nex-auth-page {
+    padding: 40px 16px;
+  }
+
+  .nex-auth-card {
+    padding: 28px 20px;
+  }
+
+  .nex-auth-title {
+    font-size: 26px;
+  }
+
+  .nex-auth-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

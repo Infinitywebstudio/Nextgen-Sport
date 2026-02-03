@@ -1,0 +1,104 @@
+@use '../utils/variables' as *;
+
+// ============================================
+// NEXTGEN Header Overrides
+// ============================================
+$nex-font-heading: 'Oswald', 'Host Grotesk', $font-family-primary;
+$nex-font-body: 'DM Sans', 'Host Grotesk', $font-family-primary;
+$nex-dark: #161616;
+$nex-red: #EE2731;
+
+// Logo
+.nex-header-logo {
+  font-family: $nex-font-heading;
+  font-size: 26px;
+  font-weight: 700;
+  color: $nex-dark;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+// Nav link overrides
+.nex-header {
+  .main-nav > li > a {
+    font-family: $nex-font-body !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: $nex-dark !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $nex-red !important;
+    }
+  }
+
+  .main-nav > li.active > a {
+    color: $nex-red !important;
+  }
+
+  // Submenu
+  .submenu li a {
+    font-family: $nex-font-body !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: $nex-dark !important;
+
+    &:hover {
+      color: $nex-red !important;
+    }
+  }
+
+  .submenu li.active a {
+    color: $nex-red !important;
+  }
+}
+
+// CTA buttons
+.nex-header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: $nex-font-body;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &--outline {
+    color: $nex-dark;
+    background: transparent;
+    border: 2px solid $nex-dark;
+
+    &:hover {
+      background: $nex-dark;
+      color: $white;
+      text-decoration: none;
+    }
+  }
+
+  &--primary {
+    color: $white;
+    background: $nex-red;
+    border: 2px solid $nex-red;
+
+    &:hover {
+      background: darken($nex-red, 8%);
+      border-color: darken($nex-red, 8%);
+      color: $white;
+      text-decoration: none;
+    }
+  }
+}
+
+// Mobile menu logo
+.menu-header {
+  .nex-header-logo {
+    font-size: 22px;
+  }
+}

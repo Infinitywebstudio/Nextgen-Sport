@@ -43,7 +43,8 @@ export const API_ENDPOINTS = {
     USERS: `${API_CONFIG.WP_API_URL}/${API_CONFIG.WP_NAMESPACE}/users`,
     USER: (userId: number) => `${API_CONFIG.WP_API_URL}/${API_CONFIG.WP_NAMESPACE}/users/${userId}`,
     ME: `${API_CONFIG.WP_API_URL}/${API_CONFIG.WP_NAMESPACE}/users/me`,
-    CATEGORIES: `${API_CONFIG.WP_API_URL}/${API_CONFIG.WP_NAMESPACE}/categories`, // New endpoint for general categories
+    CATEGORIES: `${API_CONFIG.WP_API_URL}/${API_CONFIG.WP_NAMESPACE}/categories`,
+    SPORTS: `${API_CONFIG.WP_API_URL}/${API_CONFIG.WP_NAMESPACE}/sports`,
   },
 
   // Services (Custom Post Type)
@@ -64,6 +65,27 @@ export const API_ENDPOINTS = {
   REVIEWS: {
     LIST: `${API_CONFIG.WP_API_URL}/${API_CONFIG.WP_NAMESPACE}/reviews`,
     DETAIL: (reviewId: number) => `${API_CONFIG.WP_API_URL}/${API_CONFIG.WP_NAMESPACE}/reviews/${reviewId}`,
+  },
+
+  // Dashboard Endpoints (Talent & Recruteur)
+  DASHBOARD: {
+    // Talent
+    TALENT_STATS: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/stats`,
+    TALENT_PROFILE: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/profile`,
+
+    // Recruteur - Visited
+    RECRUTEUR_VISITED: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/recruteur/visited`,
+    RECRUTEUR_VISIT: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/recruteur/visit`,
+
+    // Recruteur - Conversations
+    CONVERSATIONS: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/recruteur/conversations`,
+    CONVERSATION: (id: number) => `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/recruteur/conversations/${id}`,
+
+    // Account (common)
+    ACCOUNT_PROFILE: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/account/profile`,
+    ACCOUNT_PASSWORD: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/account/password`,
+    ACCOUNT_DEACTIVATE: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/account`,
+    ACCOUNT_SUBSCRIPTION: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/account/subscription`,
   },
 };
 

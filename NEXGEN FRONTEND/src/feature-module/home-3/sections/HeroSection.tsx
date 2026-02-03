@@ -1,32 +1,27 @@
-import Button from '../../../components/nextgen/Button';
+import { Link } from 'react-router-dom';
+import heroBg from '../../../assets/img/homepage/hero-bg.png';
+import heroDecor from '../../../assets/img/homepage/Group-5.png';
 
 const HeroSection = () => {
   return (
-    <section className="hero-section-home3">
-      <div className="hero-container">
-        <div className="hero-content">
-          {/* Bloc du haut */}
-          <div className="hero-top">
-            <h1 className="hero-title">
-              Des prestataires fiables, près de chez vous
-            </h1>
-            <Button
-              variant="primary"
-              icon={<i className="ti ti-arrow-right" />}
-              iconPosition="right"
-              className="hero-button"
-            >
-              Trouver un prestataire
-            </Button>
-          </div>
-
-          {/* Bloc du bas */}
-          <div className="hero-bottom">
-            <h2 className="hero-brand">NEXTGEN</h2>
-            <p className="hero-tagline">
-              Trouvez facilement la bonne personne pour vos travaux
-            </p>
-          </div>
+    <section
+      className="nex-hero"
+      style={{ backgroundImage: `url(${heroBg})` }}
+    >
+      <div className="nex-hero__content">
+        <h1 className="nex-hero__title nex-title">
+          METS TA CARRIÈRE SOUS LES PROJECTEURS
+        </h1>
+        <div className="nex-hero__buttons">
+          <Link to="/search" className="nex-btn nex-btn--red">
+            Trouver un talent
+          </Link>
+          <Link to="/signup" className="nex-btn nex-btn--yellow">
+            Créer un compte
+          </Link>
+        </div>
+        <div className="nex-hero__decor">
+          <img src={heroDecor} alt="NEXTGEN Sport" />
         </div>
       </div>
     </section>

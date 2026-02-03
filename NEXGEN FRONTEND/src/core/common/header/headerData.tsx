@@ -10,11 +10,11 @@ export const header = [
     menu: [],
   },
   {
-    tittle: "Prestataires", // New top-level item
-    base: "prestataires",
+    tittle: "Talents",
+    base: "search",
     showAsTab: false,
     separateRoute: true,
-    route: all_routes.service, // Linking to general service listing page
+    route: all_routes.searchTalents,
     menu: [],
   },
   {

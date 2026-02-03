@@ -14,6 +14,8 @@ import Faq from '../pages/faq';
 import Portfolio from '../pages/portfolio';
 import PortfolioDetails from '../pages/portfolio-details';
 import Pricing from '../pages/pricing';
+import PricingTalent from '../pages/pricing/pricing-talent';
+import PricingRecruteur from '../pages/pricing/pricing-recruteur';
 import PrivacyPolicy from '../pages/privacy-policy';
 import TermCondition from '../pages/termcondition';
 import UnderCondition from '../pages/under-condition';
@@ -72,7 +74,12 @@ import SellerReviews from '../seller-module/seller-reviews';
 import SellerSettings from '../seller-module/seller-settings';
 import SellerOrders from '../seller-module/seller-orders';
 import SellerRequests from '../seller-module/seller-requests';
-import TalentDashboardPage from '../pages/talent-dashboard';
+import TalentDashboard from '../pages/talent-dashboard';
+import TalentMyProfile from '../pages/talent-my-profile';
+import RecruteurVisited from '../pages/recruteur-visited';
+import RecruteurMessages from '../pages/recruteur-messages';
+import RecruteurAccount from '../pages/recruteur-account';
+import RecruteurPayment from '../pages/recruteur-payment';
 
 // Test pages imports
 import ApiTest from '../../components/ApiTest';
@@ -89,6 +96,8 @@ import StatsCardPage from '../pages/test-nextgen/pages/stats-card-page';
 import CategoryFilterPage from '../pages/test-nextgen/pages/category-filter-page';
 import ModulationShowcase from '../pages/modulation-showcase';
 import ProviderProfile from '../gigs/provider-profile';
+import TalentProfile from '../pages/talent-profile';
+import SearchTalentsPage from '../pages/search-talents';
 
 const routes = all_routes;
 
@@ -188,6 +197,16 @@ export const publicRoutes = [
         route: Route,
       },
       {
+        path: routes.pricingTalent,
+        element: <PricingTalent />,
+        route: Route,
+      },
+      {
+        path: routes.pricingRecruteur,
+        element: <PricingRecruteur />,
+        route: Route,
+      },
+      {
         path: routes.privacyPolicy,
         element: <PrivacyPolicy />,
         route: Route,
@@ -274,6 +293,16 @@ export const publicRoutes = [
       {
         path: routes.providerProfile,
         element: <ProviderProfile/>,
+        route: Route,
+      },
+      {
+        path: routes.searchTalents,
+        element: <SearchTalentsPage />,
+        route: Route,
+      },
+      {
+        path: routes.talentProfile,
+        element: <TalentProfile />,
         route: Route,
       },
       {
@@ -378,6 +407,16 @@ export const publicRoutes = [
         element: <TeamDetails />,
         route: Route,
       },
+      {
+        path: routes.signIn,
+        element: <SignIn />,
+        route: Route,
+      },
+      {
+        path: routes.signUp,
+        element: <SignUp />,
+        route: Route,
+      },
 ];
 
 export const authRoutes = [
@@ -399,16 +438,6 @@ export const authRoutes = [
   {
     path: routes.underCondition,
     element: <UnderCondition />,
-    route: Route,
-  },
-  {
-    path: routes.signIn,
-    element: <SignIn />,
-    route: Route,
-  },
-  {
-    path: routes.signUp,
-    element: <SignUp />,
     route: Route,
   },
   {
@@ -471,11 +500,6 @@ export const buyerRoutes = [
   },
 ]
 export const sellerRoutes = [
-  {
-    path: routes.talentDashboard,
-    element: <TalentDashboardPage />,
-    route: Route,
-  },
   {
     path: routes.SellerDashboard,
     element: <SellerDashboard />,
@@ -547,4 +571,40 @@ export const sellerRoutes = [
     route: Route,
   },
 
+]
+
+export const talentRoutes = [
+  {
+    path: routes.talentDashboard,
+    element: <TalentDashboard />,
+    route: Route,
+  },
+  {
+    path: routes.talentMyProfile,
+    element: <TalentMyProfile />,
+    route: Route,
+  },
+]
+
+export const recruteurRoutes = [
+  {
+    path: routes.recruteurTalents,
+    element: <RecruteurVisited />,
+    route: Route,
+  },
+  {
+    path: routes.recruteurMessages,
+    element: <RecruteurMessages />,
+    route: Route,
+  },
+  {
+    path: routes.recruteurAccount,
+    element: <RecruteurAccount />,
+    route: Route,
+  },
+  {
+    path: routes.recruteurPayment,
+    element: <RecruteurPayment />,
+    route: Route,
+  },
 ]
