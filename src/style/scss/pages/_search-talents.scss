@@ -1,0 +1,744 @@
+@use '../utils/variables' as *;
+
+// ============================================
+// NEXTGEN — Page Recherche Talents
+// ============================================
+
+$nex-font-heading: 'Oswald', 'Host Grotesk', $font-family-primary;
+$nex-font-body: 'DM Sans', 'Host Grotesk', $font-family-primary;
+$nex-red: #EE2731;
+$nex-yellow: #FDC00A;
+$nex-dark: #161616;
+$nex-dark-bg: #1E1E1E;
+$nex-blue: #135FB3;
+$nex-beige: #F3F0E9;
+
+// ============================================
+// PAGE WRAPPER
+// ============================================
+.nex-search-page {
+  background-color: $white;
+}
+
+// ============================================
+// HERO
+// ============================================
+.nex-search-hero {
+  background-color: $nex-dark-bg;
+  padding: 140px 40px 50px;
+  text-align: center;
+
+  &__container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-family: $nex-font-heading;
+    font-size: 72px;
+    font-weight: 700;
+    color: $white;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    font-family: $nex-font-body;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0;
+  }
+}
+
+// ============================================
+// FILTERS SECTION
+// ============================================
+.nex-search-filters {
+  background-color: $white;
+  padding: 40px;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+}
+
+// ============================================
+// INDIVIDUAL FILTER DROPDOWN
+// ============================================
+.nex-filter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &__label {
+    font-family: $nex-font-heading;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: $nex-dark;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__clear {
+    font-family: $nex-font-body;
+    font-size: 11px;
+    font-weight: 500;
+    color: $nex-red;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    transition: color 0.2s;
+
+    &:hover {
+      color: darken($nex-red, 10%);
+    }
+  }
+
+  &__toggle {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: $nex-font-body;
+    font-size: 14px;
+    font-weight: 400;
+    color: $nex-dark;
+    background-color: $white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover {
+      border-color: #d1d5db;
+      background-color: #fafafa;
+    }
+
+    &--open {
+      border-color: $nex-red;
+      box-shadow: 0 0 0 3px rgba($nex-red, 0.1);
+    }
+  }
+
+  &__toggle-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $nex-red;
+    color: $white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    min-width: 20px;
+  }
+
+  &__arrow {
+    transition: transform 0.2s ease;
+    color: #9ca3af;
+    flex-shrink: 0;
+
+    .nex-filter__toggle--open & {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: $white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 100;
+  }
+
+  &__option {
+    padding: 10px 16px;
+    font-family: $nex-font-body;
+    font-size: 14px;
+    color: $nex-dark;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &:hover {
+      background-color: #f9fafb;
+    }
+
+    &--selected {
+      background-color: rgba($nex-red, 0.05);
+      color: $nex-red;
+      font-weight: 500;
+    }
+
+    input[type='checkbox'] {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+      accent-color: $nex-red;
+    }
+  }
+}
+
+// ============================================
+// FILTER ACTIONS (save + load inline)
+// ============================================
+.nex-search-filters__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nex-search-filters__save-btn {
+  padding: 6px 14px;
+  font-family: $nex-font-body;
+  font-size: 12px;
+  font-weight: 500;
+  background: none;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    color: $nex-red;
+    border-color: $nex-red;
+  }
+}
+
+// ============================================
+// SAVED SEARCHES DROPDOWN (compact)
+// ============================================
+.nex-saved-dropdown {
+  position: relative;
+
+  &__toggle {
+    padding: 6px 14px;
+    font-family: $nex-font-body;
+    font-size: 12px;
+    font-weight: 500;
+    background: none;
+    color: #6b7280;
+    border: 1px solid #d1d5db;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+
+    &:hover {
+      color: $nex-red;
+      border-color: $nex-red;
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 220px;
+    background: $white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    z-index: 100;
+    overflow: hidden;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    gap: 8px;
+    transition: background-color 0.15s;
+
+    &:hover {
+      background-color: #f9fafb;
+    }
+
+    & + & {
+      border-top: 1px solid #f3f4f6;
+    }
+  }
+
+  &__name {
+    font-family: $nex-font-body;
+    font-size: 13px;
+    font-weight: 500;
+    color: $nex-dark;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    text-align: left;
+    flex: 1;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $nex-red;
+    }
+  }
+
+  &__delete {
+    background: none;
+    border: none;
+    color: #d1d5db;
+    cursor: pointer;
+    padding: 2px;
+    display: flex;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $nex-red;
+    }
+  }
+}
+
+// ============================================
+// RESULTS SECTION
+// ============================================
+.nex-search-results {
+  padding: 40px 40px 80px;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgba($nex-dark, 0.08);
+  }
+
+  &__title {
+    font-family: $nex-font-heading;
+    font-size: 28px;
+    color: $nex-dark;
+    text-transform: none;
+  }
+
+  &__count {
+    font-family: $nex-font-body;
+    font-size: 13px;
+    font-weight: 500;
+    color: #6b7280;
+    background-color: $white;
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 80px 20px;
+    background: $white;
+    border-radius: 25px;
+
+    svg {
+      color: #d1d5db;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-family: $nex-font-heading;
+      font-size: 28px;
+      color: $nex-dark;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-family: $nex-font-body;
+      font-size: 16px;
+      color: #6b7280;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__empty-btn {
+    padding: 15px 28px;
+    border: none;
+    border-radius: 15px;
+    background-color: $nex-red;
+    color: $white;
+    font-family: $nex-font-body;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: darken($nex-red, 8%);
+    }
+  }
+}
+
+// ============================================
+// RESULT CARD
+// ============================================
+.nex-result-card {
+  border: 2px solid $nex-dark;
+  border-radius: 5px;
+  padding: 10px;
+  background: $white;
+  text-decoration: none;
+  display: block;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+  }
+
+  &__image {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+
+    img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: $nex-red;
+    color: $white;
+    font-family: $nex-font-body;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 25px;
+    letter-spacing: 0.02em;
+  }
+
+  &__body {
+    padding: 8px 4px 4px;
+  }
+
+  &__name {
+    font-family: $nex-font-heading;
+    font-size: 24px;
+    font-weight: 700;
+    color: $nex-dark;
+    text-transform: none;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2px;
+  }
+
+  &__sport {
+    font-family: $nex-font-heading;
+    font-size: 18px;
+    font-weight: 700;
+    color: $nex-dark;
+    text-transform: none;
+    margin: 0;
+  }
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: $nex-dark;
+    border-radius: 100px;
+    transition: background-color 0.2s;
+
+    img {
+      width: 14px;
+      height: 14px;
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &:hover &__arrow {
+    background-color: $nex-red;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+    font-family: $nex-font-body;
+    font-size: 14px;
+    color: #6b7280;
+  }
+
+  &__rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: $nex-dark;
+    font-weight: 500;
+
+    svg {
+      color: $nex-yellow;
+      fill: $nex-yellow;
+    }
+  }
+
+  &__reviews {
+    color: #9ca3af;
+    font-weight: 400;
+    margin-left: 2px;
+  }
+
+  &__location {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
+
+// ============================================
+// MODAL
+// ============================================
+.nex-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nex-modal {
+  background: $white;
+  border-radius: 15px;
+  padding: 32px;
+  max-width: 440px;
+  width: 90%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+  &__title {
+    font-family: $nex-font-heading;
+    font-size: 22px;
+    font-weight: 700;
+    color: $nex-dark;
+    margin-bottom: 20px;
+    text-transform: none;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: $nex-font-body;
+    font-size: 14px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    outline: none;
+    color: $nex-dark;
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+
+    &:focus {
+      border-color: $nex-red;
+      box-shadow: 0 0 0 3px rgba($nex-red, 0.1);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+
+  &__btn {
+    padding: 10px 24px;
+    font-family: $nex-font-body;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &--cancel {
+      background: $white;
+      color: $nex-dark;
+      border: 2px solid #e5e7eb;
+
+      &:hover {
+        border-color: #d1d5db;
+        background-color: #fafafa;
+      }
+    }
+
+    &--save {
+      background-color: $nex-red;
+      color: $white;
+      border: 2px solid $nex-red;
+
+      &:hover {
+        background-color: darken($nex-red, 8%);
+        border-color: darken($nex-red, 8%);
+      }
+    }
+  }
+}
+
+// ============================================
+// RESPONSIVE
+// ============================================
+@media (max-width: 1200px) {
+  .nex-search-results__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .nex-search-hero {
+    padding: 120px 20px 36px;
+
+    &__title {
+      font-size: 48px;
+    }
+
+    &__subtitle {
+      font-size: 16px;
+    }
+  }
+
+  .nex-search-filters {
+    padding: 24px 20px;
+
+    &__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .nex-search-results {
+    padding: 32px 20px 60px;
+
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+  }
+
+  .nex-result-card {
+    &__name {
+      font-size: 20px;
+    }
+
+    &__sport {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .nex-search-hero {
+    padding: 100px 16px 28px;
+
+    &__title {
+      font-size: 36px;
+    }
+  }
+
+  .nex-search-filters {
+    padding: 20px 16px;
+
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .nex-search-results {
+    padding: 24px 16px 40px;
+
+    &__grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+
+    &__header {
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+    }
+  }
+
+  .nex-result-card {
+    &__name {
+      font-size: 22px;
+    }
+
+    &__sport {
+      font-size: 16px;
+    }
+  }
+}

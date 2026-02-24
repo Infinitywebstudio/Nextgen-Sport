@@ -1,0 +1,155 @@
+@use '../utils/variables' as *;
+
+// ============================================
+// NEXTGEN Footer
+// ============================================
+$nex-font-heading: 'Oswald', 'Host Grotesk', $font-family-primary;
+$nex-font-body: 'DM Sans', 'Host Grotesk', $font-family-primary;
+$nex-dark: #161616;
+$nex-red: #EE2731;
+
+.footer-nextgen {
+  width: 100%;
+  padding: 0 20px;
+  margin-top: 120px;
+  margin-bottom: 30px;
+  background-color: transparent;
+  color: $nex-dark;
+
+  .footer-wrapper {
+    width: 100%;
+    background-color: $nex-dark;
+    border-radius: 24px;
+    padding: 80px 60px 50px;
+  }
+
+  .footer-links-section {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 100px;
+    margin-bottom: 120px;
+  }
+
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-column-title {
+    font-family: $nex-font-heading;
+    font-size: 22px;
+    font-weight: 700;
+    color: $white;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: 0 0 24px 0;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    li a {
+      font-family: $nex-font-body;
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+
+  .footer-brand-section {
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 40px;
+  }
+
+  .footer-logo-large {
+    .logo-text-large {
+      font-family: $nex-font-heading;
+      font-size: 120px;
+      font-weight: 700;
+      color: $white;
+      text-transform: uppercase;
+      margin: 0;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+  }
+
+  .copyright {
+    font-family: $nex-font-body;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0 0 12px 0;
+  }
+}
+
+// Responsive
+@media (max-width: 992px) {
+  .footer-nextgen {
+    margin-top: 80px;
+
+    .footer-wrapper {
+      padding: 60px 40px;
+    }
+
+    .footer-links-section {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px;
+      margin-bottom: 80px;
+    }
+
+    .footer-logo-large .logo-text-large {
+      font-size: 80px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-nextgen {
+    margin-top: 60px;
+    padding: 0 12px;
+
+    .footer-wrapper {
+      padding: 40px 24px;
+    }
+
+    .footer-links-section {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand-section {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .footer-logo-large .logo-text-large {
+      font-size: 56px;
+    }
+
+    .copyright {
+      font-size: 13px;
+    }
+  }
+}

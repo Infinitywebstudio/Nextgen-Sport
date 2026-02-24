@@ -1,0 +1,1362 @@
+@use '../utils/variables' as *;
+
+// ============================================
+// NEXTGEN Homepage — Design System
+// ============================================
+
+// Font stacks (fallback to Google Fonts until custom fonts are provided)
+// To use the actual fonts: place GulamsCondensed and Helotypo files in /src/style/fonts/
+// and update the @font-face declarations in _fonts.scss
+$nex-font-heading: 'Oswald', 'Host Grotesk', $font-family-primary;
+$nex-font-body: 'DM Sans', 'Host Grotesk', $font-family-primary;
+
+// Brand Colors
+$nex-red: #EE2731;
+$nex-yellow: #FDC00A;
+$nex-dark: #161616;
+$nex-dark-bg: #1E1E1E;
+$nex-blue: #135FB3;
+$nex-blue-banner: #217BB3;
+$nex-beige: #F3F0E9;
+$nex-black: #020101;
+
+// ============================================
+// HEADER TRANSPARENT (homepage only)
+// ============================================
+.nex-home-page .header {
+  position: absolute;
+  background: transparent;
+  box-shadow: none;
+
+  // Logo text white
+  .navbar-brand span,
+  .dark-logo span,
+  .logo-small span {
+    color: $white !important;
+  }
+
+  // Nav links white
+  .main-nav > li > a {
+    color: $white !important;
+  }
+
+  // Icons & dropdowns white
+  .nav-item-box-home .nav-link {
+    color: $white !important;
+
+    i {
+      color: $white !important;
+    }
+  }
+
+  // Auth buttons
+  .header-navbar-rht .btn-light {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: $white;
+  }
+
+  // Mobile hamburger white
+  .bar-icon span {
+    background-color: $white;
+  }
+
+  // Chevron arrows white
+  .dropdown-toggle::after {
+    border-bottom-color: $white;
+    border-right-color: $white;
+  }
+}
+
+// When scrolled: revert to solid header
+.nex-home-page .header.fixed {
+  position: fixed;
+  background: $white;
+  box-shadow: 0px 3px 53px rgba(197, 197, 197, 0.27);
+
+  .navbar-brand span,
+  .dark-logo span,
+  .logo-small span {
+    color: $nex-dark !important;
+  }
+
+  .main-nav > li > a {
+    color: $nex-dark !important;
+  }
+
+  .nav-item-box-home .nav-link {
+    color: $nex-dark !important;
+
+    i {
+      color: $nex-dark !important;
+    }
+  }
+
+  .header-navbar-rht .btn-light {
+    background-color: revert;
+    border-color: revert;
+    color: revert;
+  }
+
+  .bar-icon span {
+    background-color: $nex-dark;
+  }
+
+  .dropdown-toggle::after {
+    border-bottom-color: #757575;
+    border-right-color: #757575;
+  }
+}
+
+// Shared title class
+.nex-title {
+  font-family: $nex-font-heading;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+// Shared button
+.nex-btn {
+  display: inline-block;
+  font-family: $nex-font-body;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 15px 28px;
+  border-radius: 15px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  &--red {
+    background-color: $nex-red;
+    color: $white;
+  }
+
+  &--yellow {
+    background-color: $nex-yellow;
+    color: $nex-dark;
+  }
+
+  &--white {
+    background-color: $white;
+    color: $nex-dark;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+// ============================================
+// SECTION 0 — HERO
+// ============================================
+.nex-hero {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 40px;
+    gap: 30px;
+    max-width: 1400px;
+    width: 100%;
+  }
+
+  &__title {
+    font-size: 100px;
+    line-height: 95px;
+    letter-spacing: 0.5px;
+    color: $white;
+    width: 85%;
+    padding-top: 100px;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__decor {
+    width: 60%;
+    align-self: center;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .nex-hero {
+    &__title {
+      font-size: 60px;
+      line-height: 58px;
+      width: 100%;
+      padding-top: 80px;
+    }
+
+    &__content {
+      padding: 0 20px;
+      gap: 24px;
+    }
+
+    &__decor {
+      width: 80%;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .nex-hero {
+    &__title {
+      font-size: 40px;
+      line-height: 40px;
+      padding-top: 70px;
+    }
+
+    &__decor {
+      width: 90%;
+    }
+
+    &__buttons {
+      flex-direction: column;
+      width: 100%;
+
+      .nex-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+}
+
+// ============================================
+// SECTION 1 — CATEGORIES
+// ============================================
+.nex-categories {
+  padding: 100px 0;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  &__title {
+    font-size: 80px;
+    color: $nex-dark;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+.nex-category-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  background-color: $nex-beige;
+  border-radius: 25px;
+  padding: 24px 24px 24px 30px;
+  text-decoration: none;
+  overflow: visible;
+  transition: transform 0.3s, box-shadow 0.3s;
+  min-height: 180px;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+    .nex-category-card__image img {
+      transform: translateY(-70px) scale(1.05);
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    min-height: 120px;
+    z-index: 1;
+  }
+
+  &__name {
+    font-size: 36px;
+    color: $nex-dark;
+    text-transform: none;
+  }
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: $nex-dark;
+    border-radius: 100px;
+    transition: background-color 0.2s;
+
+    img {
+      width: 18px;
+      height: 18px;
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &:hover &__arrow {
+    background-color: $nex-red;
+  }
+
+  &__image {
+    position: absolute;
+    right: 16px;
+    bottom: 0;
+    width: 45%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      transform: translateY(-55px);
+      transition: transform 0.3s ease;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .nex-categories {
+    padding: 60px 0;
+
+    &__title {
+      font-size: 50px;
+      margin-bottom: 30px;
+    }
+
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+  }
+
+  .nex-category-card {
+    min-height: 120px;
+    padding: 16px;
+
+    &__name {
+      font-size: 28px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .nex-categories {
+    &__title {
+      font-size: 36px;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__container {
+      padding: 0 16px;
+    }
+  }
+}
+
+// ============================================
+// SECTION 2 — TALENTS
+// ============================================
+.nex-talents {
+  padding: 0 0 80px 0;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  &__title {
+    font-size: 80px;
+    color: $nex-dark;
+    text-align: left;
+    margin-bottom: 40px;
+    text-transform: none;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
+.nex-talent-card {
+  border: 2px solid $nex-dark;
+  border-radius: 5px;
+  padding: 10px;
+  text-decoration: none;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  &__image {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  &__name {
+    font-size: 30px;
+    color: $nex-dark;
+    margin-top: 10px;
+    text-transform: none;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -4px;
+  }
+
+  &__sport {
+    font-size: 20px;
+    color: $nex-dark;
+    text-transform: none;
+  }
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background-color: $nex-dark;
+    border-radius: 100px;
+
+    img {
+      width: 14px;
+      height: 14px;
+      filter: brightness(0) invert(1);
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .nex-talents {
+    &__title {
+      font-size: 50px;
+    }
+
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .nex-talents {
+    &__title {
+      font-size: 36px;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+    }
+
+    &__container {
+      padding: 0 16px;
+    }
+  }
+}
+
+// ============================================
+// SECTION 3 — CTA BANNER
+// ============================================
+.nex-cta-banner {
+  padding: 0 40px;
+  margin: 100px 0;
+
+  &__card {
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 600px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 15px;
+    display: flex;
+    align-items: flex-end;
+    padding: 60px 50px;
+  }
+
+  &__title {
+    font-size: 80px;
+    line-height: 1;
+    color: $white;
+    width: 68%;
+  }
+}
+
+@media (max-width: 992px) {
+  .nex-cta-banner {
+    padding: 0 20px;
+
+    &__card {
+      min-height: 400px;
+      padding: 40px 30px;
+    }
+
+    &__title {
+      font-size: 50px;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .nex-cta-banner {
+    &__card {
+      min-height: 300px;
+      padding: 30px 20px;
+    }
+
+    &__title {
+      font-size: 36px;
+    }
+  }
+}
+
+// ============================================
+// SECTION 4 — PASSION
+// ============================================
+.nex-passion {
+  background-color: $nex-dark-bg;
+  padding: 100px 0;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+  }
+
+  &__image {
+    flex: 1;
+    min-height: 500px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 15px;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .nex-btn {
+      align-self: flex-start;
+    }
+  }
+
+  &__title {
+    font-size: 80px;
+    line-height: 1;
+    color: $nex-red;
+  }
+
+  &__text {
+    font-family: $nex-font-body;
+    font-size: 18px;
+    font-weight: 400;
+    color: $white;
+    line-height: 1.7;
+  }
+}
+
+@media (max-width: 992px) {
+  .nex-passion {
+    padding: 60px 0;
+
+    &__container {
+      flex-direction: column;
+      padding: 0 20px;
+    }
+
+    &__image {
+      min-height: 300px;
+    }
+
+    &__title {
+      font-size: 50px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .nex-passion {
+    &__title {
+      font-size: 36px;
+    }
+  }
+}
+
+// ============================================
+// SECTION 5 — RATING (Notation)
+// ============================================
+.nex-rating {
+  background-color: $nex-dark-bg;
+  padding: 100px 0;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+  }
+
+  &__left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .nex-btn {
+      align-self: flex-start;
+    }
+  }
+
+  &__title {
+    font-size: 80px;
+    line-height: 1;
+    color: $nex-yellow;
+  }
+
+  &__text {
+    font-family: $nex-font-body;
+    font-size: 18px;
+    font-weight: 400;
+    color: $white;
+    line-height: 1.7;
+  }
+
+  &__features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__feature {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    font-family: $nex-font-body;
+    color: $white;
+
+    strong {
+      display: block;
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    span {
+      font-size: 15px;
+      opacity: 0.75;
+      line-height: 1.4;
+    }
+  }
+
+  &__feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: rgba($nex-yellow, 0.12);
+    border-radius: 10px;
+    flex-shrink: 0;
+    color: $nex-yellow;
+  }
+
+  // ---- Mock card (right) ----
+  &__right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__card {
+    background: #232323;
+    border-radius: 16px;
+    padding: 32px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  }
+
+  &__card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  &__avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $nex-red, $nex-yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+  }
+
+  &__player-name {
+    font-family: $nex-font-heading;
+    font-size: 24px;
+    font-weight: 700;
+    color: $white;
+  }
+
+  &__player-sport {
+    font-family: $nex-font-body;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  &__badge {
+    display: inline-block;
+    align-self: flex-start;
+    background: linear-gradient(135deg, $nex-red, $nex-yellow);
+    color: $white;
+    font-family: $nex-font-heading;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 6px;
+  }
+
+  // Skill bars
+  &__skills {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__skill-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: $nex-font-body;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 6px;
+  }
+
+  &__bar-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  &__bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, $nex-red, $nex-yellow);
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: nex-bar-grow 1.2s ease-out forwards;
+    animation-delay: 0.3s;
+    width: var(--bar-width);
+  }
+
+  // Overall rating
+  &__overall {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  &__overall-label {
+    font-family: $nex-font-body;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  &__overall-value {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: $nex-yellow;
+
+    span {
+      font-family: $nex-font-heading;
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    small {
+      font-family: $nex-font-body;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}
+
+@keyframes nex-bar-grow {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 992px) {
+  .nex-rating {
+    padding: 60px 0;
+
+    &__container {
+      flex-direction: column;
+      padding: 0 20px;
+    }
+
+    &__title {
+      font-size: 50px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .nex-rating {
+    &__title {
+      font-size: 36px;
+    }
+
+    &__card {
+      padding: 24px;
+    }
+  }
+}
+
+// ============================================
+// SECTION 6 — PRICING
+// ============================================
+.nex-pricing {
+  background-color: $nex-dark-bg;
+  padding: 30px 0 80px 0;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  &__title {
+    font-size: 80px;
+    color: $nex-yellow;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &__tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  &__tab {
+    background-color: rgba(66, 66, 66, 0.42);
+    color: $white;
+    font-family: $nex-font-body;
+    font-size: 20px;
+    font-weight: 400;
+    text-transform: capitalize;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(66, 66, 66, 0.7);
+    }
+
+    &--active {
+      background-color: $nex-yellow;
+      color: $nex-dark;
+      font-weight: 600;
+    }
+  }
+
+  &__plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  &__more {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  &__more-link {
+    font-family: $nex-font-body;
+    font-size: 18px;
+    color: $nex-yellow;
+    text-decoration: none;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+  }
+}
+
+.nex-plan {
+  border-radius: 7px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  min-height: 550px;
+
+  &--blue {
+    background-color: $nex-blue;
+    color: $white;
+  }
+
+  &--yellow {
+    background-color: #FFFFFF;
+    color: $nex-dark;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  &--red {
+    background-color: $nex-red;
+    color: $white;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  &__name {
+    font-size: 40px;
+    text-transform: none;
+  }
+
+  &--yellow &__header {
+    border-bottom-color: rgba(0, 0, 0, 0.15);
+  }
+
+  &__price {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: $nex-font-body;
+  }
+
+  &--yellow &__price {
+    border-bottom-color: rgba(0, 0, 0, 0.15);
+    border-top-color: rgba(0, 0, 0, 0.15);
+  }
+
+  &__amount {
+    font-size: 25px;
+    font-weight: 400;
+  }
+
+  &__period {
+    font-size: 16px;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+
+  &__features {
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+
+  &__feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: $nex-font-body;
+    font-size: 18px;
+    font-weight: 400;
+
+    img {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+  }
+
+  &--yellow &__feature img {
+    filter: brightness(0);
+  }
+
+  &__cta {
+    margin-top: auto;
+    text-align: center;
+
+    .nex-btn {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .nex-pricing {
+    &__title {
+      font-size: 50px;
+    }
+
+    &__plans {
+      grid-template-columns: 1fr;
+      max-width: 450px;
+      margin: 0 auto;
+    }
+
+    &__container {
+      padding: 0 20px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .nex-pricing {
+    &__title {
+      font-size: 36px;
+    }
+
+    &__tab {
+      font-size: 16px;
+      padding: 10px 24px;
+    }
+  }
+}
+
+// ============================================
+// SECTION 6 — MARQUEE
+// ============================================
+.nex-marquee {
+  background-color: $nex-blue-banner;
+  overflow: hidden;
+  padding: 16px 0;
+
+  &__track {
+    display: flex;
+    gap: 60px;
+    animation: marquee-scroll 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  &__text {
+    font-size: 35px;
+    color: $white;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+// ============================================
+// SECTION 7 — BRAND STATEMENT
+// ============================================
+.nex-brand {
+  &__container {
+    display: flex;
+    min-height: 600px;
+  }
+
+  &__left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    gap: 20px;
+  }
+
+  &__title {
+    font-size: 80px;
+    color: $nex-dark;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  &__lines {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__line {
+    display: inline-block;
+    background-color: $nex-red;
+    color: $white;
+    font-family: $nex-font-body;
+    font-size: 40px;
+    font-weight: 600;
+    padding: 4px 16px;
+    line-height: 1.3;
+  }
+
+  &__right {
+    flex: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .nex-brand {
+    &__container {
+      flex-direction: column;
+    }
+
+    &__title {
+      font-size: 50px;
+    }
+
+    &__line {
+      font-size: 28px;
+    }
+
+    &__right {
+      min-height: 400px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .nex-brand {
+    &__title {
+      font-size: 36px;
+    }
+
+    &__line {
+      font-size: 22px;
+    }
+
+    &__left {
+      padding: 40px 16px;
+    }
+  }
+}
+
+// ============================================
+// SECTION 10 — PODCAST
+// ============================================
+.nex-podcast {
+  background-color: $nex-dark-bg;
+  padding: 100px 0;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 80px;
+    color: $nex-yellow;
+    margin-bottom: 12px;
+  }
+
+  &__subtitle {
+    font-family: $nex-font-body;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 50px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    text-align: left;
+  }
+
+  &__card {
+    background: #232323;
+    border-radius: 14px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.25s, box-shadow 0.25s;
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    &:hover .nex-podcast__play {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  &__thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.75;
+    width: 56px;
+    height: 56px;
+    background: $nex-red;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    transition: opacity 0.25s, transform 0.25s;
+  }
+
+  &__info {
+    padding: 20px 22px;
+  }
+
+  &__card-title {
+    font-family: $nex-font-heading;
+    font-size: 20px;
+    font-weight: 600;
+    color: $white;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+  }
+
+  &__date {
+    font-family: $nex-font-body;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.45);
+  }
+}
+
+@media (max-width: 992px) {
+  .nex-podcast {
+    padding: 60px 0;
+
+    &__title {
+      font-size: 50px;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    &__container {
+      padding: 0 20px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .nex-podcast {
+    &__title {
+      font-size: 36px;
+    }
+  }
+}

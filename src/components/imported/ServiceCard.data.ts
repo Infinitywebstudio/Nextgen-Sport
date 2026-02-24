@@ -1,0 +1,108 @@
+import type { ServiceCardProps } from './ServiceCard';
+
+export const mockServices: Omit<ServiceCardProps, 'onFavorite' | 'onClick' | 'onContact'>[] = [
+  {
+    id: 1,
+    category: 'Plomberie',
+    rating: 4.8,
+    reviewCount: 127,
+    seller: {
+      name: 'Marc Weber',
+      avatar: 'https://i.pravatar.cc/150?img=12',
+      location: 'Luxembourg-Ville',
+      isTopPrestataire: true,
+    },
+    price: '35€',
+  },
+  {
+    id: 2,
+    category: 'Électricité',
+    rating: 5.0,
+    reviewCount: 89,
+    seller: {
+      name: 'Sophie Müller',
+      avatar: 'https://i.pravatar.cc/150?img=47',
+      location: 'Esch-sur-Alzette',
+      isTopPrestataire: true,
+    },
+    price: '40€',
+  },
+  {
+    id: 3,
+    category: 'Ménage',
+    rating: 4.6,
+    reviewCount: 203,
+    seller: {
+      name: 'Thomas Schmit',
+      avatar: 'https://i.pravatar.cc/150?img=33',
+      location: 'Differdange',
+      isTopPrestataire: false,
+    },
+    price: '15€',
+  },
+  {
+    id: 4,
+    category: 'Baby-sitting',
+    rating: 4.9,
+    reviewCount: 56,
+    seller: {
+      name: 'Laura Becker',
+      avatar: 'https://i.pravatar.cc/150?img=27',
+      location: 'Dudelange',
+      isTopPrestataire: true,
+    },
+    price: '12€',
+  },
+  {
+    id: 5,
+    category: 'Jardinage',
+    rating: 4.7,
+    reviewCount: 145,
+    seller: {
+      name: 'Pierre Hoffman',
+      avatar: 'https://i.pravatar.cc/150?img=68',
+      location: 'Ettelbruck',
+      isTopPrestataire: false,
+    },
+    price: '20€',
+  },
+  {
+    id: 6,
+    category: 'Coiffure à domicile',
+    rating: 4.8,
+    reviewCount: 178,
+    seller: {
+      name: 'Claire Fontaine',
+      avatar: 'https://i.pravatar.cc/150?img=45',
+      location: 'Pétange',
+      isTopPrestataire: true,
+    },
+    price: '25€',
+  },
+  {
+    id: 7,
+    category: 'Dépannage informatique',
+    rating: 4.9,
+    reviewCount: 92,
+    seller: {
+      name: 'Nicolas Klein',
+      avatar: 'https://i.pravatar.cc/150?img=52',
+      location: 'Schifflange',
+      isTopPrestataire: true,
+    },
+    price: '45€',
+  },
+  {
+    id: 8,
+    category: 'Cours de soutien',
+    rating: 4.7,
+    reviewCount: 134,
+    seller: {
+      name: 'Emma Wagner',
+      avatar: 'https://i.pravatar.cc/150?img=38',
+      location: 'Wiltz',
+      isTopPrestataire: false,
+    },
+    price: '30€',
+  },
+];

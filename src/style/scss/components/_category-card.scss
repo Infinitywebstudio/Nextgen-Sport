@@ -1,0 +1,180 @@
+// NEXTGEN Category Card Component
+// Couleurs: #201D1D (noir), #F4F4F4 (gris clair)
+
+@use "../utils/variables" as *;
+
+// Couleurs
+$category-card-bg: #ECECEC;
+$category-card-text: #1a1a1a;
+$category-card-border: #1a1a1a;
+
+// La Carte
+.category-card {
+  background-color: $category-card-bg;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+// Header (Titre + Image)
+.category-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+// Le Titre
+.category-card-title {
+  margin: 0;
+  font-family: 'Host Grotesk', $font-family-primary;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: $category-card-text;
+  line-height: 1.2;
+}
+
+// L'image circulaire
+.category-card-image-wrapper {
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  overflow: visible;
+  margin-top: 20px;
+  position: relative;
+
+  // Bordure dashed autour du cercle (effet cerceau)
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + 14px);
+    height: calc(100% + 14px);
+    border: 2px dashed $category-card-border;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  // L'image elle-même
+  img {
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.category-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// Footer (Bouton)
+.category-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+
+// Customisation du bouton pour la CategoryCard
+.category-card-button {
+  background-color: transparent !important;
+  border: 2px solid $category-card-border !important;
+  color: $category-card-text !important;
+
+  .btn-nextgen-icon {
+    background-color: $category-card-text !important;
+
+    i {
+      color: #F4D35E !important;
+    }
+  }
+
+  &:hover {
+    background-color: $category-card-text !important;
+    color: $white !important;
+
+    .btn-nextgen-icon {
+      background-color: #F4D35E !important;
+
+      i {
+        color: $category-card-text !important;
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .category-card {
+    max-width: 100%;
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .category-card-title {
+    font-size: 2rem;
+  }
+
+  .category-card-image-wrapper {
+    width: 130px;
+    height: 130px;
+    margin-top: 24px;
+
+    // Bordure dashed plus grande sur mobile
+    &::before {
+      width: calc(100% + 16px);
+      height: calc(100% + 16px);
+    }
+  }
+
+  .category-card-footer {
+    margin-top: 8px;
+  }
+
+  // Désactiver les animations hover sur mobile (pas de hover sur tactile)
+  .category-card-button {
+    &:hover {
+      background-color: transparent !important;
+      color: $category-card-text !important;
+
+      .btn-nextgen-icon {
+        background-color: $category-card-text !important;
+
+        i {
+          color: #F4D35E !important;
+        }
+      }
+    }
+
+    &:active {
+      background-color: $category-card-text !important;
+      color: $white !important;
+
+      .btn-nextgen-icon {
+        background-color: #F4D35E !important;
+
+        i {
+          color: $category-card-text !important;
+        }
+      }
+    }
+  }
+
+  // Désactiver l'animation de flèche sur mobile
+  .btn-nextgen:hover .btn-nextgen-icon:has(.ti-arrow-right) {
+    .btn-nextgen-icon-main {
+      transform: translate(-50%, -50%) translateX(0);
+    }
+
+    .btn-nextgen-icon-clone {
+      transform: translate(-50%, -50%) translateX(-200%);
+    }
+  }
+}

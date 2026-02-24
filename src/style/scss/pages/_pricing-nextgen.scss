@@ -1,0 +1,451 @@
+@use '../utils/variables' as *;
+
+// ============================================
+// NEXTGEN Pricing Pages
+// ============================================
+
+// Reuse design system variables from _home-3.scss
+$nex-font-heading: 'Oswald', 'Host Grotesk', $font-family-primary;
+$nex-font-body: 'DM Sans', 'Host Grotesk', $font-family-primary;
+$nex-red: #EE2731;
+$nex-yellow: #FDC00A;
+$nex-dark: #161616;
+$nex-dark-bg: #1E1E1E;
+$nex-blue: #135FB3;
+$nex-beige: #F3F0E9;
+
+// ============================================
+// PAGE WRAPPER
+// ============================================
+.nex-pricing-page {
+  background-color: $white;
+}
+
+// ============================================
+// HERO BANNER
+// ============================================
+.nex-pricing-hero {
+  background-color: $nex-dark-bg;
+  padding: 120px 0 80px 0;
+  text-align: center;
+
+  &__container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  &__title {
+    font-family: $nex-font-heading;
+    font-size: 80px;
+    color: $nex-yellow;
+    margin-bottom: 20px;
+  }
+
+  &__subtitle {
+    font-family: $nex-font-body;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  &__switch {
+    display: inline-block;
+    font-family: $nex-font-body;
+    font-size: 16px;
+    color: $nex-yellow;
+    text-decoration: none;
+    border: 1px solid rgba($nex-yellow, 0.4);
+    padding: 10px 24px;
+    border-radius: 5px;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover {
+      background-color: $nex-yellow;
+      color: $nex-dark;
+    }
+  }
+
+  // Variant for recruteur page
+  &--recruteur {
+    .nex-pricing-hero__title {
+      color: $nex-red;
+    }
+
+    .nex-pricing-hero__switch {
+      color: $nex-red;
+      border-color: rgba($nex-red, 0.4);
+
+      &:hover {
+        background-color: $nex-red;
+        color: $white;
+      }
+    }
+  }
+}
+
+// ============================================
+// PLANS SECTION
+// ============================================
+.nex-pricing-plans {
+  background-color: $nex-dark-bg;
+  padding: 0 0 80px 0;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+}
+
+// ============================================
+// COMPARISON TABLE
+// ============================================
+.nex-comparison {
+  padding: 80px 0;
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  &__title {
+    font-family: $nex-font-heading;
+    font-size: 60px;
+    color: $nex-dark;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  &__table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: $nex-font-body;
+    font-size: 16px;
+  }
+
+  &__feature-col {
+    text-align: left;
+    padding: 16px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    color: $nex-dark;
+    background-color: $nex-beige;
+    width: 40%;
+  }
+
+  &__plan-col {
+    text-align: center;
+    padding: 16px 20px;
+    font-family: $nex-font-heading;
+    font-size: 22px;
+    font-weight: 600;
+    color: $white;
+    width: 20%;
+
+    &--blue {
+      background-color: $nex-blue;
+    }
+
+    &--yellow {
+      background-color: $nex-yellow;
+      color: $nex-dark;
+    }
+
+    &--red {
+      background-color: $nex-red;
+    }
+  }
+
+  &__row--even {
+    background-color: rgba($nex-beige, 0.4);
+  }
+
+  &__feature-label {
+    padding: 14px 20px;
+    font-weight: 500;
+    color: $nex-dark;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  &__cell {
+    text-align: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    font-size: 15px;
+  }
+
+  &__check {
+    color: #22c55e;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &__cross {
+    color: #ef4444;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &__text {
+    color: $nex-dark;
+    font-weight: 500;
+  }
+}
+
+// ============================================
+// FAQ SECTION
+// ============================================
+.nex-faq {
+  background-color: $nex-beige;
+  padding: 80px 0;
+
+  &__container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  &__title {
+    font-family: $nex-font-heading;
+    font-size: 60px;
+    color: $nex-dark;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__item {
+    background-color: $white;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    &--open {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  &__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: $nex-font-body;
+    font-size: 18px;
+    font-weight: 600;
+    color: $nex-dark;
+    text-align: left;
+    gap: 16px;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $nex-red;
+    }
+  }
+
+  &__icon {
+    font-size: 24px;
+    font-weight: 300;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $nex-beige;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .nex-faq__item--open &__icon {
+    background-color: $nex-red;
+    color: $white;
+  }
+
+  &__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+
+    p {
+      font-family: $nex-font-body;
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba($nex-dark, 0.75);
+      line-height: 1.7;
+      padding: 0 24px 20px 24px;
+    }
+  }
+
+  .nex-faq__item--open &__answer {
+    max-height: 300px;
+  }
+}
+
+// ============================================
+// RESPONSIVE — TABLET
+// ============================================
+@media (max-width: 992px) {
+  .nex-pricing-hero {
+    padding: 100px 0 60px 0;
+
+    &__title {
+      font-size: 50px;
+    }
+
+    &__subtitle {
+      font-size: 18px;
+    }
+  }
+
+  .nex-pricing-plans__container {
+    padding: 0 20px;
+
+    .nex-pricing__plans {
+      grid-template-columns: 1fr;
+      max-width: 450px;
+      margin: 0 auto;
+    }
+  }
+
+  .nex-comparison {
+    padding: 60px 0;
+
+    &__title {
+      font-size: 40px;
+      margin-bottom: 30px;
+    }
+
+    &__container {
+      padding: 0 20px;
+    }
+
+    &__feature-col {
+      font-size: 14px;
+      padding: 12px 10px;
+    }
+
+    &__plan-col {
+      font-size: 16px;
+      padding: 12px 8px;
+    }
+
+    &__cell {
+      font-size: 13px;
+      padding: 10px 8px;
+    }
+
+    &__feature-label {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+
+  .nex-faq {
+    padding: 60px 0;
+
+    &__title {
+      font-size: 40px;
+      margin-bottom: 30px;
+    }
+
+    &__container {
+      padding: 0 20px;
+    }
+  }
+}
+
+// ============================================
+// RESPONSIVE — MOBILE
+// ============================================
+@media (max-width: 576px) {
+  .nex-pricing-hero {
+    padding: 90px 0 50px 0;
+
+    &__container {
+      padding: 0 16px;
+    }
+
+    &__title {
+      font-size: 36px;
+    }
+
+    &__subtitle {
+      font-size: 16px;
+    }
+
+    &__switch {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  }
+
+  .nex-comparison {
+    &__title {
+      font-size: 30px;
+    }
+
+    &__table {
+      font-size: 13px;
+    }
+
+    &__feature-col {
+      width: 35%;
+      padding: 10px 8px;
+      font-size: 12px;
+    }
+
+    &__plan-col {
+      font-size: 14px;
+      padding: 10px 6px;
+    }
+
+    &__cell {
+      font-size: 12px;
+      padding: 8px 6px;
+    }
+
+    &__feature-label {
+      font-size: 13px;
+      padding: 8px;
+    }
+  }
+
+  .nex-faq {
+    &__title {
+      font-size: 30px;
+    }
+
+    &__question {
+      font-size: 16px;
+      padding: 16px;
+    }
+
+    &__answer p {
+      font-size: 15px;
+      padding: 0 16px 16px 16px;
+    }
+  }
+}

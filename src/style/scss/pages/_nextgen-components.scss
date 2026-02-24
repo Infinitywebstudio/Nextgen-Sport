@@ -1,0 +1,184 @@
+// NEXTGEN Custom Components Styles
+// Styles pour UserProfile et ReviewsCarousel
+
+@use "../utils/variables" as *;
+
+// ===========================
+// Reviews Carousel
+// ===========================
+
+.reviews-carousel {
+  position: relative;
+  padding: 0 40px; // Space for arrows
+
+  // Slick arrow customization
+  .slick-prev,
+  .slick-next {
+    width: 32px;
+    height: 32px;
+    border: 2px solid $gray-300;
+    border-radius: 50%;
+    background-color: $white;
+    z-index: 10;
+    transition: all 0.3s ease;
+
+    &:before {
+      color: $gray-700;
+      font-size: 16px;
+    }
+
+    &:hover {
+      background-color: $gray-100;
+      border-color: $gray-400;
+    }
+  }
+
+  .slick-prev {
+    left: 0;
+  }
+
+  .slick-next {
+    right: 0;
+  }
+
+  // Dots customization
+  .slick-dots {
+    bottom: -35px;
+
+    li button:before {
+      font-size: 10px;
+      color: $gray-400;
+    }
+
+    li.slick-active button:before {
+      color: $primary;
+    }
+  }
+
+  // Profile variant - smaller padding
+  &.reviews-carousel-profile {
+    padding: 0 30px;
+  }
+}
+
+// ===========================
+// User Profile
+// ===========================
+
+// Profile Card standard
+.profile-card {
+  box-shadow: $box-shadow-sm;
+  border: 1px solid $gray-100;
+  border-radius: $border-radius-xl;
+  overflow: hidden;
+
+  .card-body {
+    padding: 1.5rem;
+  }
+}
+
+// Profile Details Card
+.profile-details {
+  box-shadow: $box-shadow-sm;
+  border: 1px solid $gray-100;
+  border-radius: $border-radius-xl;
+
+  .card-header {
+    background-color: $white;
+    border-bottom: 1px solid $gray-100;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+}
+
+// Badge variants with icons
+.badge {
+  &.bg-success-transparent {
+    background-color: $success-transparent !important;
+    color: $success !important;
+    border: 1px solid rgba($success, 0.2);
+  }
+
+  &.bg-info-transparent {
+    background-color: $info-transparent !important;
+    color: $info !important;
+    border: 1px solid rgba($info, 0.2);
+  }
+
+  &.bg-warning-transparent {
+    background-color: $warning-transparent !important;
+    color: $warning !important;
+    border: 1px solid rgba($warning, 0.2);
+  }
+}
+
+// Progress bar for rating distribution
+.progress {
+  background-color: $gray-100;
+
+  .progress-bar {
+    &.bg-warning {
+      background-color: $warning !important;
+    }
+  }
+}
+
+// Avatar with initials
+.avatar {
+  .avatar-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-weight: $font-weight-semibold;
+  }
+
+  &.avatar-sm {
+    width: 40px;
+    height: 40px;
+
+    .avatar-title {
+      font-size: $font-size-14;
+    }
+  }
+
+  &.avatar-md {
+    width: 48px;
+    height: 48px;
+
+    .avatar-title {
+      font-size: $font-size-16;
+    }
+  }
+
+  &.avatar-lg {
+    width: 56px;
+    height: 56px;
+
+    .avatar-title {
+      font-size: $font-size-18;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 991px) {
+  .profile-card,
+  .profile-details {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .reviews-carousel {
+    padding: 0 25px;
+
+    &.reviews-carousel-profile {
+      padding: 0 20px;
+    }
+  }
+}

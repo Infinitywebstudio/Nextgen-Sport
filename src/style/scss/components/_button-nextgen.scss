@@ -1,0 +1,282 @@
+// NEXTGEN Custom Button Component
+// Couleur principale: #FF6961 (Rouge/Rose Corail)
+
+@use "../utils/variables" as *;
+
+// Couleurs NEXTGEN
+$nextgen-primary-color: #FF6961;
+$nextgen-secondary-color: #0D7FFF;
+$nextgen-border-radius: 8px;
+
+// Base du bouton NEXTGEN
+.btn-nextgen {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Host Grotesk', $font-family-primary;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: $nextgen-border-radius;
+  white-space: nowrap;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($nextgen-primary-color, 0.2);
+  }
+
+  &.disabled,
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// Texte du bouton
+.btn-nextgen-text {
+  padding-left: 3px;
+}
+
+// Tailles
+.btn-nextgen-sm {
+  padding: 4px;
+  font-size: $font-size-14;
+  gap: 4px;
+
+  .btn-nextgen-icon {
+    font-size: 16px;
+  }
+}
+
+.btn-nextgen-md {
+  padding: 10px;
+  font-size: 18px;
+  gap: 6px;
+
+  .btn-nextgen-icon {
+    font-size: 20px;
+  }
+}
+
+.btn-nextgen-lg {
+  padding: 16px;
+  font-size: $font-size-18;
+  gap: 10px;
+
+  .btn-nextgen-icon {
+    font-size: 24px;
+  }
+}
+
+.btn-nextgen-xl {
+  padding: 20px;
+  font-size: $font-size-20;
+  gap: 12px;
+
+  .btn-nextgen-icon {
+    font-size: 28px;
+  }
+}
+
+// Variant Primary (Rouge/Rose Corail)
+.btn-nextgen-primary {
+  background-color: $nextgen-primary-color;
+  color: $white;
+
+  &:active {
+    background-color: darken($nextgen-primary-color, 8%);
+  }
+
+  .btn-nextgen-icon {
+    color: $nextgen-primary-color;
+  }
+}
+
+// Variant Secondary (Bleu NEXTGEN)
+.btn-nextgen-secondary {
+  background-color: $nextgen-secondary-color;
+  color: $white;
+
+  &:active {
+    background-color: darken($nextgen-secondary-color, 8%);
+  }
+
+  .btn-nextgen-icon {
+    color: $nextgen-secondary-color;
+  }
+}
+
+// Variant Outline
+.btn-nextgen-outline {
+  background-color: transparent;
+  color: $nextgen-primary-color;
+  border: 2px solid $nextgen-primary-color;
+
+  &:active {
+    background-color: rgba($nextgen-primary-color, 0.2);
+  }
+
+  .btn-nextgen-icon {
+    background-color: $white;
+    color: $nextgen-primary-color;
+  }
+}
+
+// Variant Ghost
+.btn-nextgen-ghost {
+  background-color: transparent;
+  color: $nextgen-primary-color;
+  border: none;
+
+  &:active {
+    background-color: rgba($nextgen-primary-color, 0.15);
+  }
+
+  .btn-nextgen-icon {
+    background-color: $white;
+    color: $nextgen-primary-color;
+  }
+}
+
+// Bouton arrondi (pill)
+.btn-nextgen-rounded {
+  border-radius: 50px !important;
+
+  // Icône arrondie pour les boutons pill
+  .btn-nextgen-icon {
+    border-radius: 50% !important;
+  }
+}
+
+// Icône dans un carré
+.btn-nextgen-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  background-color: $white;
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  position: relative;
+
+  // Pour les icônes normales (pas de flèche)
+  &:not(:has(.ti-arrow-right)) {
+    .btn-nextgen-icon-main,
+    .btn-nextgen-icon-clone {
+      position: static;
+      transform: none;
+    }
+
+    .btn-nextgen-icon-clone {
+      display: none;
+    }
+  }
+
+  // Pour les icônes de flèches uniquement
+  &:has(.ti-arrow-right) {
+    overflow: hidden;
+  }
+}
+
+// Icône principale (visible par défaut)
+.btn-nextgen-icon-main {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Icône clone (cachée à gauche)
+.btn-nextgen-icon-clone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Animation au hover: uniquement pour les flèches
+.btn-nextgen:hover .btn-nextgen-icon:has(.ti-arrow-right) {
+  .btn-nextgen-icon-main {
+    transition: transform 0.4s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateX(200%);
+  }
+
+  .btn-nextgen-icon-clone {
+    transition: transform 0.4s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateX(0);
+  }
+}
+
+// Position initiale pour les flèches (non-hover)
+.btn-nextgen-icon:has(.ti-arrow-right) {
+  .btn-nextgen-icon-main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.4s ease;
+  }
+
+  .btn-nextgen-icon-clone {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateX(-200%);
+    transition: transform 0.4s ease;
+  }
+}
+
+// Icône pour les petits boutons
+.btn-nextgen-sm .btn-nextgen-icon {
+  width: 28px;
+  height: 28px;
+}
+
+// Icône pour les boutons moyens
+.btn-nextgen-md .btn-nextgen-icon {
+  width: 36px;
+  height: 36px;
+}
+
+// Icône pour les grands boutons
+.btn-nextgen-lg .btn-nextgen-icon {
+  width: 44px;
+  height: 44px;
+}
+
+// Icône pour les très grands boutons
+.btn-nextgen-xl .btn-nextgen-icon {
+  width: 52px;
+  height: 52px;
+}
+
+// Animation de chargement
+.btn-nextgen {
+  .spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+    border-width: 2px;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .btn-nextgen-xl {
+    padding: 16px 32px;
+    font-size: $font-size-18;
+  }
+
+  .btn-nextgen-lg {
+    padding: 14px 28px;
+    font-size: $font-size-16;
+  }
+}

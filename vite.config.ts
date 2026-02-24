@@ -1,14 +1,13 @@
-import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig({
-  base:"/rasket_r/",
   plugins: [react()],
+  base: '/', // ELOO Frontend - App autonome
   resolve: {
-    alias: {
-      "@": resolve(__dirname, "src"),
-    },
-  },
+   alias: {
+     moment: 'moment/moment.js'
+   },
+ },
 })
