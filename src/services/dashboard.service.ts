@@ -13,6 +13,37 @@ import { API_ENDPOINTS, getHeaders } from '../config/api.config';
 export interface TalentStats {
   profile_views: number;
   profile_completion: number;
+  follower_count: number;
+  opportunities: number;
+  matches_played: number;
+  goals: number;
+  assists: number;
+  rating: number;
+  minutes_played: number;
+}
+
+export interface PortfolioImage {
+  id: number;
+  url: string;
+  thumbnail: string;
+  title?: string;
+}
+
+export interface ActivityItem {
+  id: string;
+  type: 'view' | 'message' | 'opportunity' | 'badge';
+  title: string;
+  description: string;
+  time: string;
+}
+
+export interface ExperienceItem {
+  id: string;
+  club: string;
+  role: string;
+  period: string;
+  description: string;
+  tags: string[];
 }
 
 export interface TalentProfileData {
@@ -26,6 +57,9 @@ export interface TalentProfileData {
   location: string;
   height: string;
   weight: string;
+  preferred_foot: string;
+  portfolio_urls: string;
+  portfolio_gallery: PortfolioImage[];
   skills: string[];
   avatar_url?: string;
   profile_post_id?: number | null;
@@ -120,6 +154,39 @@ class DashboardService {
     return this.request(API_ENDPOINTS.DASHBOARD.TALENT_PROFILE, {
       method: 'PUT',
       body: JSON.stringify(data),
+    });
+  }
+
+  async uploadPortfolioImage(file: File): Promise<DashboardResponse<{ success: boolean; image: PortfolioImage }>> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const token = localStorage.getItem('nextgen_token');
+      const headers: HeadersInit = {};
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
+      const response = await fetch(API_ENDPOINTS.DASHBOARD.TALENT_PORTFOLIO, {
+        method: 'POST',
+        headers,
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        return { success: false, error: data.message || `Erreur ${response.status}`, status: response.status };
+      }
+      return { success: true, data, status: response.status };
+    } catch (error) {
+      return { success: false, error: error instanceof Error ? error.message : 'Erreur reseau' };
+    }
+  }
+
+  async deletePortfolioImage(imageId: number): Promise<DashboardResponse<{ success: boolean }>> {
+    return this.request(API_ENDPOINTS.DASHBOARD.TALENT_PORTFOLIO_DELETE(imageId), {
+      method: 'DELETE',
     });
   }
 

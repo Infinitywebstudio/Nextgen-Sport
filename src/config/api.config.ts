@@ -72,6 +72,8 @@ export const API_ENDPOINTS = {
     // Talent
     TALENT_STATS: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/stats`,
     TALENT_PROFILE: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/profile`,
+    TALENT_PORTFOLIO: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/portfolio`,
+    TALENT_PORTFOLIO_DELETE: (imageId: number) => `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/portfolio/${imageId}`,
 
     // Recruteur - Visited
     RECRUTEUR_VISITED: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/recruteur/visited`,
