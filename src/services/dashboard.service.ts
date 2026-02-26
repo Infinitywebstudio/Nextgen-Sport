@@ -4,6 +4,7 @@
  */
 
 import { API_ENDPOINTS, getHeaders } from '../config/api.config';
+import authService from './auth.service';
 
 // ============================================================
 // Types
@@ -90,6 +91,17 @@ export interface Message {
   created_at: string;
 }
 
+export interface TalentRequest {
+  id: number;
+  recruiter_id: number;
+  recruiter_name: string;
+  recruiter_avatar: string;
+  message: string;
+  budget: string;
+  status: 'pending' | 'accepted' | 'declined';
+  created_at: string;
+}
+
 export interface SubscriptionInfo {
   plan: 'free' | 'starter' | 'pro' | 'premium';
   plan_label: string;
@@ -122,6 +134,10 @@ class DashboardService {
       const data = await response.json();
 
       if (!response.ok) {
+        if (response.status === 401) {
+          authService.logout();
+          return { success: false, error: 'Session expirée', status: 401 };
+        }
         return {
           success: false,
           error: data.message || `Erreur ${response.status}`,
@@ -187,6 +203,31 @@ class DashboardService {
   async deletePortfolioImage(imageId: number): Promise<DashboardResponse<{ success: boolean }>> {
     return this.request(API_ENDPOINTS.DASHBOARD.TALENT_PORTFOLIO_DELETE(imageId), {
       method: 'DELETE',
+    });
+  }
+
+  // ----------------------------------------------------------
+  // TALENT - Requests
+  // ----------------------------------------------------------
+
+  async getTalentRequests(status?: string): Promise<DashboardResponse<TalentRequest[]>> {
+    const url = status
+      ? `${API_ENDPOINTS.DASHBOARD.TALENT_REQUESTS}?status=${status}`
+      : API_ENDPOINTS.DASHBOARD.TALENT_REQUESTS;
+    return this.request<TalentRequest[]>(url);
+  }
+
+  async respondToRequest(requestId: number, status: 'accepted' | 'declined'): Promise<DashboardResponse<{ success: boolean; status: string }>> {
+    return this.request(API_ENDPOINTS.DASHBOARD.TALENT_REQUEST(requestId), {
+      method: 'PUT',
+      body: JSON.stringify({ status }),
+    });
+  }
+
+  async createRequest(talentId: number, message: string, budget?: string): Promise<DashboardResponse<{ success: boolean; request_id: number }>> {
+    return this.request(API_ENDPOINTS.DASHBOARD.RECRUTEUR_REQUEST, {
+      method: 'POST',
+      body: JSON.stringify({ talent_id: talentId, message, budget }),
     });
   }
 

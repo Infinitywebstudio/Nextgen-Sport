@@ -16,6 +16,17 @@ interface ProtectedRouteProps {
   fallbackPath?: string;
 }
 
+const LoadingSpinner = () => (
+  <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '60vh' }}>
+    <div className="text-center">
+      <div className="spinner-border" role="status" style={{ color: '#4bc3b9', width: '3rem', height: '3rem' }}>
+        <span className="visually-hidden">Chargement...</span>
+      </div>
+      <p className="mt-3 text-muted">Chargement de votre espace...</p>
+    </div>
+  </div>
+);
+
 const ProtectedRoute = ({
   requiredRole,
   requiredPlans,
@@ -44,7 +55,7 @@ const ProtectedRoute = ({
   // 3. Vérifier le statut d'abonnement (indépendant du plan)
   if (requiredStatus) {
     if (subscription.loading || !subscription.loaded) {
-      return null;
+      return <LoadingSpinner />;
     }
 
     const hasStatus = requiredStatus.includes(subscription.status);
@@ -71,7 +82,7 @@ const ProtectedRoute = ({
   // 4. Vérifier le plan d'abonnement (si requis)
   if (requiredPlans && requiredPlans.length > 0) {
     if (subscription.loading || !subscription.loaded) {
-      return null;
+      return <LoadingSpinner />;
     }
 
     const hasPlan = requiredPlans.includes(subscription.plan);

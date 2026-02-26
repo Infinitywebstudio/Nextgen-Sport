@@ -15,6 +15,11 @@ const talentItems: SidebarItem[] = [
     icon: "ti-user",
     path: all_routes.talentMyProfile,
   },
+  {
+    label: "Demandes",
+    icon: "ti-mail",
+    path: all_routes.talentRequests,
+  },
 ];
 
 const TalentFeature = () => {

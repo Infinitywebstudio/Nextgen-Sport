@@ -98,6 +98,7 @@ buyerSettings : '/buyer/parametres',
 //talent Module (NEXTGEN)
 talentDashboard: "/talent/dashboard",
 talentMyProfile: "/talent/profil",
+talentRequests: "/talent/demandes",
 
 //recruteur Module (NEXTGEN)
 recruteurTalents: "/recruteur/talents",

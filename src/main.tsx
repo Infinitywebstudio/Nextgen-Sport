@@ -17,6 +17,7 @@ import AllRoutes from './feature-module/router/router';
 import { Provider } from 'react-redux';
 import store from './core/redux/store';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import AuthGuard from './components/AuthGuard';
 
 // Google OAuth Client ID - À configurer dans .env
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
@@ -27,7 +28,9 @@ root.render(
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <Provider store={store}>
         <BrowserRouter basename={base_path}>
-          <AllRoutes />
+          <AuthGuard>
+            <AllRoutes />
+          </AuthGuard>
         </BrowserRouter>
       </Provider>
     </GoogleOAuthProvider>

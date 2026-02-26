@@ -29,6 +29,7 @@ export const API_ENDPOINTS = {
     STATUS: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/status`,
     STATS: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/stats`,
     REGISTER: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/register`,
+    REGISTER_GOOGLE: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/register-google`,
     PROFILE: (userId: number) => `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/profile/${userId}`,
   },
 
@@ -82,6 +83,13 @@ export const API_ENDPOINTS = {
     // Recruteur - Conversations
     CONVERSATIONS: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/recruteur/conversations`,
     CONVERSATION: (id: number) => `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/recruteur/conversations/${id}`,
+
+    // Talent - Requests
+    TALENT_REQUESTS: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/requests`,
+    TALENT_REQUEST: (id: number) => `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/requests/${id}`,
+
+    // Recruteur - Requests
+    RECRUTEUR_REQUEST: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/recruteur/requests`,
 
     // Account (common)
     ACCOUNT_PROFILE: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/account/profile`,

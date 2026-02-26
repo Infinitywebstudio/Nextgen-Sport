@@ -29,6 +29,7 @@ interface WordPressRegisterData {
   role: 'nextgen_client' | 'nextgen_talent';
   first_name?: string;
   last_name?: string;
+  phone?: string;
 }
 
 export interface AuthToken {
@@ -112,6 +113,7 @@ class AuthService {
         role: userData.account_type === 'prestataire' ? 'nextgen_talent' : 'nextgen_client',
         first_name: userData.first_name,
         last_name: userData.last_name,
+        phone: userData.phone,
       };
 
       console.log('📤 Envoi inscription vers WordPress:', { ...wpData, password: '***' });
@@ -345,7 +347,7 @@ class AuthService {
       });
 
       // Envoyer les infos à WordPress pour authentification/création
-      const response = await fetch(API_ENDPOINTS.NEXTGEN.REGISTER + '-google', {
+      const response = await fetch(API_ENDPOINTS.NEXTGEN.REGISTER_GOOGLE, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

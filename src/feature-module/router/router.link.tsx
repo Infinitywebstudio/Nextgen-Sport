@@ -80,6 +80,7 @@ import SellerOrders from '../seller-module/seller-orders';
 import SellerRequests from '../seller-module/seller-requests';
 import TalentDashboard from '../pages/talent-dashboard';
 import TalentMyProfile from '../pages/talent-my-profile';
+import TalentRequests from '../pages/talent-requests';
 import RecruteurVisited from '../pages/recruteur-visited';
 import RecruteurMessages from '../pages/recruteur-messages';
 import RecruteurAccount from '../pages/recruteur-account';
@@ -624,6 +625,11 @@ export const talentRoutes = [
   {
     path: routes.talentMyProfile,
     element: <TalentMyProfile />,
+    route: Route,
+  },
+  {
+    path: routes.talentRequests,
+    element: <TalentRequests />,
     route: Route,
   },
 ]

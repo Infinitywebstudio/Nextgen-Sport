@@ -15,9 +15,9 @@ const GOOGLE_ENABLED = !!import.meta.env.VITE_GOOGLE_CLIENT_ID;
  * Si free + pas de trial → onboarding. Sinon → dashboard selon rôle.
  */
 async function resolvePostLoginRoute(): Promise<string> {
-  const defaultRoute = authService.isPrestataire()
-    ? all_routes.talentDashboard
-    : authService.isAdmin()
+  const defaultRoute = authService.isAdmin()
+    ? all_routes.talentDashboard // TODO: remplacer par adminDashboard quand disponible
+    : authService.isPrestataire()
       ? all_routes.talentDashboard
       : all_routes.recruteurTalents;
 
@@ -54,9 +54,12 @@ const GoogleLoginBtn = ({
       setGoogleLoading(true);
       onError("");
       try {
+        // Au login Google, on ne force pas de type de compte :
+        // le backend identifie l'utilisateur existant ou crée un compte par défaut.
+        const existingType = authService.getAccountType();
         const response = await authService.loginWithGoogle(
           tokenResponse.access_token,
-          "client"
+          existingType || "client"
         );
         if (response.success) {
           const route = await resolvePostLoginRoute();
