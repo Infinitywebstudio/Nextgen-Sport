@@ -10,31 +10,31 @@ const ProfileCard = ({ profile }: ProfileCardProps) => {
   const fullName = `${profile.first_name} ${profile.last_name}`.trim() || 'Talent';
 
   return (
-    <div className="dashboard-card profile-card">
-      <div className="card-header">
-        <h2><i className="ti ti-user" /> Profil</h2>
-        <Link to={all_routes.talentMyProfile} className="btn-edit">
+    <div className="nex-dash-card td-profile-card">
+      <div className="nex-dash-card__header">
+        <h3 className="nex-dash-card__title"><i className="ti ti-user" /> Profil</h3>
+        <Link to={all_routes.talentMyProfile} className="nex-dash-btn nex-dash-btn--outline nex-dash-btn--sm">
           <i className="ti ti-edit" /> Modifier
         </Link>
       </div>
-      <div className="card-body">
-        <div className="profile-main">
-          <div className="profile-avatar">
+      <div className="nex-dash-card__body">
+        <div className="td-profile-main">
+          <div className="td-profile-avatar">
             <img
               src={profile.avatar_url || '/assets/img/default-avatar.png'}
               alt={fullName}
             />
-            <span className="status-badge">Actif</span>
+            <span className="td-profile-avatar__badge">Actif</span>
           </div>
-          <div className="profile-details">
+          <div className="td-profile-details">
             <h3>{fullName}</h3>
-            {profile.position && <p className="profile-position">{profile.position}</p>}
+            {profile.position && <p className="td-profile-details__position">{profile.position}</p>}
             {profile.location && (
-              <p className="profile-location">
+              <p className="td-profile-details__location">
                 <i className="ti ti-map-pin" /> {profile.location}
               </p>
             )}
-            <div className="profile-meta">
+            <div className="td-profile-meta">
               {profile.sport && (
                 <span><i className="ti ti-ball-football" /> {profile.sport}</span>
               )}
@@ -51,7 +51,7 @@ const ProfileCard = ({ profile }: ProfileCardProps) => {
           </div>
         </div>
         {profile.bio && (
-          <div className="profile-bio">
+          <div className="td-profile-bio">
             <h4>Biographie</h4>
             <p>{profile.bio}</p>
           </div>

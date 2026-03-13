@@ -700,8 +700,8 @@ body:has(.nex-tp) .main-wrapper {
 
 .nex-tp-videos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
 }
 
 .nex-tp-video-card {
@@ -720,7 +720,7 @@ body:has(.nex-tp) .main-wrapper {
 
   &__thumb {
     width: 100%;
-    aspect-ratio: 9 / 16;
+    aspect-ratio: 16 / 9;
     background-color: $nex-dark-bg;
     position: relative;
     overflow: hidden;
@@ -870,7 +870,7 @@ body:has(.nex-tp) .main-wrapper {
   }
 
   .nex-tp-videos-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 12px;
   }
 

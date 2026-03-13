@@ -99,6 +99,7 @@ const TalentMyProfile = () => {
       height: formData.height,
       weight: formData.weight,
       skills: formData.skills,
+      portfolio_urls: formData.portfolio_urls,
     });
 
     if (result.success) {
@@ -278,6 +279,31 @@ const TalentMyProfile = () => {
                 placeholder="Parlez de votre parcours, vos objectifs, ce qui vous distingue..."
                 rows={5}
               />
+            </div>
+          </div>
+        </div>
+
+        {/* Video URLs */}
+        <div className="nex-dash-card">
+          <div className="nex-dash-card__header">
+            <h3 className="nex-dash-card__title">Vidéos Highlights</h3>
+          </div>
+          <div className="nex-dash-card__body">
+            <div className="nex-dash-form__group">
+              <label className="nex-dash-form__label">
+                URLs YouTube (une par ligne)
+              </label>
+              <textarea
+                className="nex-dash-form__textarea"
+                name="portfolio_urls"
+                value={formData.portfolio_urls ?? ''}
+                onChange={handleChange}
+                placeholder={"https://www.youtube.com/watch?v=...\nhttps://youtu.be/..."}
+                rows={4}
+              />
+              <small className="text-muted" style={{ marginTop: 4, display: 'block' }}>
+                Formats acceptés : youtube.com/watch, youtu.be, youtube.com/shorts
+              </small>
             </div>
           </div>
         </div>

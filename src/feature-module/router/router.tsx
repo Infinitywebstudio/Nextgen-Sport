@@ -1,9 +1,7 @@
 import { Route, Routes } from 'react-router'
-import { authRoutes, buyerRoutes, publicRoutes, sellerRoutes, talentRoutes, recruteurRoutes } from './router.link';
+import { authRoutes, publicRoutes, talentRoutes, recruteurRoutes } from './router.link';
 import AuthApp from '../authApp';
 import FeatureApp from '../featureApp';
-import BuyerFeature from '../buyerFeature';
-import SellerFeature from '../sellerFeature';
 import TalentFeature from '../talentFeature';
 import RecruteurFeature from '../recruteurFeature';
 import ProtectedRoute from '../../components/ProtectedRoute';
@@ -20,16 +18,6 @@ const ALLRoutes: React.FC = () => {
         </Route>
         <Route  element={<AuthApp />}>
           {authRoutes.map((route, idx) => (
-            <Route path={route.path} element={route.element} key={idx} />
-          ))}
-        </Route>
-        <Route  element={<BuyerFeature />}>
-          {buyerRoutes.map((route, idx) => (
-            <Route path={route.path} element={route.element} key={idx} />
-          ))}
-        </Route>
-        <Route  element={<SellerFeature />}>
-          {sellerRoutes.map((route, idx) => (
             <Route path={route.path} element={route.element} key={idx} />
           ))}
         </Route>

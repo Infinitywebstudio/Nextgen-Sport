@@ -1,15 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { all_routes } from "../../../feature-module/router/all_routes";
 import { header } from "./headerData";
+import authService from "../../../services/auth.service";
 
 const Header = () => {
   const routes = all_routes;
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [subOpen, setSubopen] = useState<string>("");
   const [subsidebar, setSubsidebar] = useState("");
   const [subsidebar2, setSubsidebar2] = useState("");
   const location = useLocation();
+  const isAuthenticated = authService.isAuthenticated();
+  const user = isAuthenticated ? authService.getUser() : null;
+  const dashboardRoute = authService.isClient() ? routes.recruteurAccount : routes.talentDashboard;
+
+  const handleLogout = () => {
+    authService.logout();
+    navigate(routes.signIn);
+  };
 
   const onHandleMobileMenu = () => {
     const root = document.getElementsByTagName("html")[0];
@@ -240,16 +250,38 @@ const Header = () => {
             </ul>
           </div>
           <ul className="nav header-navbar-rht">
-            <li className="nav-item">
-              <Link className="nex-header-btn nex-header-btn--outline" to={routes.signIn}>
-                Connexion
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nex-header-btn nex-header-btn--primary" to={routes.signUp}>
-                Inscription
-              </Link>
-            </li>
+            {isAuthenticated && user ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nex-header-btn nex-header-btn--outline" to={dashboardRoute}>
+                    <i className="ti ti-layout-dashboard" style={{ marginRight: 6 }} />
+                    Mon espace
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <button
+                    className="nex-header-btn nex-header-btn--primary"
+                    onClick={handleLogout}
+                    style={{ border: 'none', cursor: 'pointer' }}
+                  >
+                    Déconnexion
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link className="nex-header-btn nex-header-btn--outline" to={routes.signIn}>
+                    Connexion
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nex-header-btn nex-header-btn--primary" to={routes.signUp}>
+                    Inscription
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </div>

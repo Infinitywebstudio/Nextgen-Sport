@@ -11,6 +11,11 @@ const recruteurItems: SidebarItem[] = [
     path: all_routes.recruteurTalents,
   },
   {
+    label: "Mes demandes",
+    icon: "ti-send",
+    path: all_routes.recruteurRequests,
+  },
+  {
     label: "Messagerie",
     icon: "ti-message",
     path: all_routes.recruteurMessages,

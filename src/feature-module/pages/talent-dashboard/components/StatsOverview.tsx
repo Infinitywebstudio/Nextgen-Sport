@@ -9,45 +9,40 @@ const StatsOverview = ({ stats, loading }: StatsOverviewProps) => {
   const cards = [
     {
       icon: 'ti ti-eye',
-      colorClass: 'blue',
+      colorMod: 'nex-dash-stat__icon--dark',
       value: stats.profile_views,
       label: 'Vues du profil',
-      change: '+12% ce mois',
     },
     {
       icon: 'ti ti-users',
-      colorClass: 'green',
+      colorMod: 'nex-dash-stat__icon--green',
       value: stats.follower_count,
       label: 'Abonnés',
-      change: null,
     },
     {
       icon: 'ti ti-briefcase',
-      colorClass: 'orange',
+      colorMod: 'nex-dash-stat__icon--yellow',
       value: stats.opportunities,
       label: 'Opportunités',
-      change: null,
     },
     {
       icon: 'ti ti-chart-pie',
-      colorClass: 'red',
+      colorMod: 'nex-dash-stat__icon--red',
       value: `${stats.profile_completion}%`,
       label: 'Profil complété',
-      change: null,
     },
   ];
 
   return (
-    <div className="stats-overview">
+    <div className="nex-dash-stats">
       {cards.map((card, index) => (
-        <div className="stat-card" key={index}>
-          <div className={`stat-icon ${card.colorClass}`}>
+        <div className="nex-dash-stat" key={index}>
+          <div className={`nex-dash-stat__icon ${card.colorMod}`}>
             <i className={card.icon} />
           </div>
-          <div className="stat-content">
-            <h3>{loading ? '–' : card.value}</h3>
-            <p>{card.label}</p>
-            {card.change && <span className="stat-change positive">{card.change}</span>}
+          <div className="nex-dash-stat__info">
+            <div className="nex-dash-stat__value">{loading ? '–' : card.value}</div>
+            <div className="nex-dash-stat__label">{card.label}</div>
           </div>
         </div>
       ))}

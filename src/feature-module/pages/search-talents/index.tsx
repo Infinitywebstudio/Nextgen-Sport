@@ -30,6 +30,10 @@ const FILTERS: { key: FilterKey; label: string; placeholder: string }[] = [
 // Groupes d'âge statiques (calculés à partir de la date d'inscription ou métadonnées)
 const AGE_GROUPS = ['12-14 ans', '15-17 ans', '18-21 ans', '22-25 ans', '+25 ans'];
 
+// Fallback statiques quand l'API n'est pas disponible
+const FALLBACK_SPORTS = ['Football', 'Basketball', 'Handball', 'Boxe', 'Tennis', 'Athlétisme', 'Taekwondo', 'Natation', 'Rugby'];
+const FALLBACK_COUNTRIES = ['France', 'Belgique', 'Suisse', 'Luxembourg', 'Sénégal', 'Côte d\'Ivoire', 'Cameroun', 'Maroc', 'Guadeloupe', 'Martinique', 'Guyane', 'La Réunion'];
+
 interface TalentData extends Provider {
   country: string;
   ageGroup: string;
@@ -103,6 +107,12 @@ const SearchTalentsPage = () => {
       } catch (err) {
         console.error('Erreur chargement talents:', err);
         setError('Impossible de charger les talents. Vérifiez votre connexion.');
+        // Fallback : remplir les filtres avec des valeurs statiques
+        setFilterOptions({
+          sport: FALLBACK_SPORTS,
+          country: FALLBACK_COUNTRIES,
+          ageGroup: AGE_GROUPS,
+        });
       } finally {
         setLoading(false);
       }

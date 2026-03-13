@@ -20,6 +20,9 @@ export const API_CONFIG = {
   // Mode
   MODE: import.meta.env.VITE_APP_MODE || 'development',
   DEBUG: import.meta.env.VITE_DEBUG === 'true',
+
+  // Stripe
+  STRIPE_PUBLISHABLE_KEY: import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '',
 };
 
 // API Endpoints
@@ -76,6 +79,13 @@ export const API_ENDPOINTS = {
     TALENT_PORTFOLIO: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/portfolio`,
     TALENT_PORTFOLIO_DELETE: (imageId: number) => `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/portfolio/${imageId}`,
 
+    // Talent - Activity, Experience, Opportunities
+    TALENT_ACTIVITY: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/activity`,
+    TALENT_EXPERIENCE: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/experience`,
+    TALENT_EXPERIENCE_DELETE: (expId: string) => `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/experience/${expId}`,
+    TALENT_OPPORTUNITIES: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/opportunities`,
+    TALENT_OPPORTUNITY: (id: number) => `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/opportunities/${id}`,
+
     // Recruteur - Visited
     RECRUTEUR_VISITED: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/recruteur/visited`,
     RECRUTEUR_VISIT: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/recruteur/visit`,
@@ -83,6 +93,10 @@ export const API_ENDPOINTS = {
     // Recruteur - Conversations
     CONVERSATIONS: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/recruteur/conversations`,
     CONVERSATION: (id: number) => `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/recruteur/conversations/${id}`,
+
+    // Talent - Conversations
+    TALENT_CONVERSATIONS: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/conversations`,
+    TALENT_CONVERSATION: (id: number) => `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/conversations/${id}`,
 
     // Talent - Requests
     TALENT_REQUESTS: `${API_CONFIG.WP_API_URL}/${API_CONFIG.NEXTGEN_NAMESPACE}/talent/requests`,

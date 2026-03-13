@@ -704,8 +704,11 @@
 		}
 	}
 	.header-navbar-rht {
-		@include mixins.respond-below(sm) { 
-            display: none;
+		@include mixins.respond-below(sm) {
+            display: flex;
+            gap: 6px;
+            padding: 0;
+            margin: 0;
         }
 		li {
 			&:first-child {

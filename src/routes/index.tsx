@@ -109,11 +109,6 @@ const SolarIcons = lazy(() => import('@/app/(admin)/icons/iconamoon/page'))
 const NotFoundAdmin = lazy(() => import('@/app/(admin)/not-found'))
 const NotFound = lazy(() => import('@/app/(other)/(error-pages)/error-404/page'))
 
-// Auth Routes
-const AuthSignIn2 = lazy(() => import('@/app/(other)/auth/sign-in-2/page'))
-const AuthSignUp2 = lazy(() => import('@/app/(other)/auth/sign-up-2/page'))
-const ResetPassword2 = lazy(() => import('@/app/(other)/auth/reset-pass-2/page'))
-const LockScreen2 = lazy(() => import('@/app/(other)/auth/lock-screen-2/page'))
 
 export type RoutesProps = {
   path: RouteProps['path']
@@ -585,27 +580,6 @@ const iconRoutes: RoutesProps[] = [
 ]
 
 export const authRoutes: RoutesProps[] = [
-  {
-    name: 'Sign In',
-    path: '/auth/sign-in',
-    element: <AuthSignIn2 />,
-  },
-  {
-    name: 'Sign Up',
-    path: '/auth/sign-up',
-    element: <AuthSignUp2 />,
-  },
-
-  {
-    name: 'Reset Password',
-    path: '/auth/reset-pass',
-    element: <ResetPassword2 />,
-  },
-  {
-    name: 'Lock Screen',
-    path: '/auth/lock-screen',
-    element: <LockScreen2 />,
-  },
   {
     name: '404 Error',
     path: '/error-404',

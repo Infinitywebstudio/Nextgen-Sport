@@ -4,6 +4,9 @@ import dashboardService, {
   type TalentStats,
   type TalentProfileData,
   type PortfolioImage,
+  type ActivityItem,
+  type ExperienceItem,
+  type OpportunityItem,
 } from '../../../services/dashboard.service';
 import SubscriptionStatusCard from '../../../components/SubscriptionStatusCard';
 import FeatureGate from '../../../components/FeatureGate';
@@ -55,10 +58,15 @@ const TalentDashboard = () => {
   const [stats, setStats] = useState<TalentStats>(DEFAULT_STATS);
   const [profile, setProfile] = useState<TalentProfileData>(DEFAULT_PROFILE);
   const [gallery, setGallery] = useState<PortfolioImage[]>([]);
+  const [activities, setActivities] = useState<ActivityItem[]>([]);
+  const [experiences, setExperiences] = useState<ExperienceItem[]>([]);
+  const [opportunities, setOpportunities] = useState<OpportunityItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [extraLoading, setExtraLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
+      // Primary data (stats + profile)
       const [statsResult, profileResult] = await Promise.all([
         dashboardService.getTalentStats(),
         dashboardService.getTalentProfile(),
@@ -73,6 +81,25 @@ const TalentDashboard = () => {
       }
 
       setLoading(false);
+
+      // Secondary data (activity, experience, opportunities) - loaded in parallel after
+      const [activityResult, experienceResult, opportunitiesResult] = await Promise.all([
+        dashboardService.getTalentActivity(),
+        dashboardService.getTalentExperience(),
+        dashboardService.getTalentOpportunities(),
+      ]);
+
+      if (activityResult.success && activityResult.data) {
+        setActivities(activityResult.data);
+      }
+      if (experienceResult.success && experienceResult.data) {
+        setExperiences(experienceResult.data);
+      }
+      if (opportunitiesResult.success && opportunitiesResult.data) {
+        setOpportunities(opportunitiesResult.data);
+      }
+
+      setExtraLoading(false);
     };
 
     fetchData();
@@ -80,16 +107,17 @@ const TalentDashboard = () => {
 
   if (loading) {
     return (
-      <div className="dashboard-main">
-        <div className="dashboard-header">
-          <div className="header-left">
-            <h1>Chargement...</h1>
-            <p>Préparation de votre espace</p>
-          </div>
+      <div className="nex-dash-page">
+        <div className="nex-dash-page__header">
+          <h1 className="nex-dash-page__title">Dashboard</h1>
+          <p className="nex-dash-page__subtitle">Préparation de votre espace...</p>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', padding: 80 }}>
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Chargement...</span>
+        <div className="nex-dash-card">
+          <div className="nex-dash-card__body" style={{ textAlign: 'center', padding: 60 }}>
+            <div className="spinner-border" role="status" style={{ color: '#EE2731', width: '2.5rem', height: '2.5rem' }}>
+              <span className="visually-hidden">Chargement...</span>
+            </div>
+            <p className="mt-3 text-muted">Chargement de vos données...</p>
           </div>
         </div>
       </div>
@@ -97,25 +125,11 @@ const TalentDashboard = () => {
   }
 
   return (
-    <div className="dashboard-main">
+    <div className="nex-dash-page">
       {/* Header */}
-      <div className="dashboard-header">
-        <div className="header-left">
-          <h1>Bienvenue, {firstName}</h1>
-          <p>Voici un aperçu de votre activité</p>
-        </div>
-        <div className="header-right">
-          <div className="user-profile-header">
-            <img
-              src={profile.avatar_url || '/assets/img/default-avatar.png'}
-              alt={firstName}
-            />
-            <div className="user-info">
-              <span className="user-name">{profile.first_name} {profile.last_name}</span>
-              <span className="user-role">Talent</span>
-            </div>
-          </div>
-        </div>
+      <div className="nex-dash-page__header">
+        <h1 className="nex-dash-page__title">Bienvenue, {firstName}</h1>
+        <p className="nex-dash-page__subtitle">Voici un aperçu de votre activité</p>
       </div>
 
       {/* Stats Overview */}
@@ -123,34 +137,30 @@ const TalentDashboard = () => {
         <StatsOverview stats={stats} loading={loading} />
       </FeatureGate>
 
-      {/* Dashboard Grid */}
-      <div className="dashboard-grid">
-        {/* Profile Card - Full width */}
-        <ProfileCard profile={profile} />
+      {/* Profile Card - Full width */}
+      <ProfileCard profile={profile} />
 
-        {/* Performance Stats - Left column */}
+      {/* Dashboard Grid - 2 column layout */}
+      <div className="td-grid">
+        {/* Left column */}
         <PerformanceStats stats={stats} />
+        <RecentActivity activities={activities} loading={extraLoading} />
 
-        {/* Skills Card - Right column (spans 2 rows) */}
+        {/* Right column - skills spans 2 rows */}
         <SkillsCard skills={profile.skills} />
-
-        {/* Recent Activity - Left column */}
-        <RecentActivity />
-
-        {/* Experience Timeline - Full width */}
-        <ExperienceTimeline />
-
-        {/* Portfolio Grid - Full width */}
-        <PortfolioGrid gallery={gallery} onGalleryUpdate={setGallery} />
-
-        {/* Opportunities - Full width */}
-        <OpportunitiesCard />
       </div>
+
+      {/* Full-width cards */}
+      <ExperienceTimeline experiences={experiences} loading={extraLoading} onUpdate={setExperiences} />
+      <PortfolioGrid gallery={gallery} onGalleryUpdate={setGallery} />
+      <OpportunitiesCard
+        opportunities={opportunities}
+        loading={extraLoading}
+        onUpdate={setOpportunities}
+      />
 
       {/* Subscription Status */}
-      <div style={{ padding: '0 32px 32px' }}>
-        <SubscriptionStatusCard />
-      </div>
+      <SubscriptionStatusCard />
     </div>
   );
 };

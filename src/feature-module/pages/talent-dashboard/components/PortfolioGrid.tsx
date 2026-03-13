@@ -19,7 +19,6 @@ const PortfolioGrid = ({ gallery, onGalleryUpdate }: PortfolioGridProps) => {
       onGalleryUpdate([result.data.image, ...gallery]);
     }
 
-    // Reset input
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
@@ -33,15 +32,15 @@ const PortfolioGrid = ({ gallery, onGalleryUpdate }: PortfolioGridProps) => {
   };
 
   return (
-    <div className="dashboard-card portfolio-card">
-      <div className="card-header">
-        <h2><i className="ti ti-photo" /> Portfolio</h2>
+    <div className="nex-dash-card td-portfolio-card">
+      <div className="nex-dash-card__header">
+        <h3 className="nex-dash-card__title"><i className="ti ti-photo" /> Portfolio</h3>
       </div>
-      <div className="card-body">
-        <div className="portfolio-grid">
+      <div className="nex-dash-card__body">
+        <div className="td-portfolio-grid">
           {/* Add new item */}
           <div
-            className="portfolio-item add-new"
+            className="td-portfolio-add"
             onClick={() => fileInputRef.current?.click()}
           >
             <i className="ti ti-plus" />
@@ -57,10 +56,10 @@ const PortfolioGrid = ({ gallery, onGalleryUpdate }: PortfolioGridProps) => {
 
           {/* Gallery items */}
           {gallery.map(image => (
-            <div className="portfolio-item" key={image.id}>
-              <div className="portfolio-thumbnail">
+            <div className="td-portfolio-item" key={image.id}>
+              <div className="td-portfolio-item__thumb">
                 <img src={image.thumbnail || image.url} alt={image.title || 'Portfolio'} />
-                <div className="play-overlay" onClick={() => handleDelete(image.id)}>
+                <div className="td-portfolio-item__overlay" onClick={() => handleDelete(image.id)}>
                   <i className="ti ti-trash" />
                 </div>
               </div>

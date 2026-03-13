@@ -21,7 +21,6 @@ import TermCondition from '../pages/termcondition';
 import UnderCondition from '../pages/under-condition';
 import Categories from '../gigs/categories';
 import Categories2 from '../gigs/categories-2';
-import Service from '../gigs/service';  // Page services connectée à WordPress
 import ServiceDetails from '../gigs/service-details';
 import ServiceGridSidebar from '../gigs/service-grid-sidebar';
 import ServiceSubCategory from '../gigs/service-sub-category';
@@ -47,7 +46,6 @@ import LockScreen from '../pages/auth/lock-screen';
 import Team from '../pages/our-team/team';
 import TeamCarousel from '../pages/our-team/teamCarousel';
 import TeamDetails from '../pages/our-team/teamDetails';
-import BuyerDashboard from '../buyer-module/dashboard/buyerDashboard';
 import Home from '../home-3';
 import ServiceDetailsTwo from '../gigs/service-details-two';
 import CheckoutGigs from '../gigs/checkout-gigs';
@@ -57,27 +55,6 @@ import Portfolio3 from '../pages/portfolio-3';
 import Portfolio4 from '../pages/portfolio-4';
 import Testimonials from '../pages/testimonials';
 import TestimonialsCarousel from '../pages/testimonials-carousel';
-import BuyerRequests from '../buyer-module/buyer-requests';
-import BuyerOrders from '../buyer-module/buyer-orders';
-import BuyerMessage from '../buyer-module/buyer-messages';
-import BuyerFavourites from '../buyer-module/buyer-favourites';
-import BuyerTransactions from '../buyer-module/buyer-transactions';
-import BuyerProfile from '../buyer-module/buyer-profile';
-import BuyerSettings from '../buyer-module/buyer-settings';
-import SellerDashboard from '../seller-module/seller-dashboard';
-import SellerMessage from '../seller-module/seller-messages';
-import SellerNotifications from '../seller-module/seller-notifications';
-import SellerTransactions from '../seller-module/seller-transactions';
-import SellerPayouts from '../seller-module/seller-payouts';
-import SellerEarnings from '../seller-module/seller-earnings';
-import SellerGigs from '../seller-module/seller-gigs';
-import SellerBuyer from '../seller-module/seller-my-buyer';
-import SellerWallets from '../seller-module/seller-wallet';
-import SellerFiles from '../seller-module/seller-files';
-import SellerReviews from '../seller-module/seller-reviews';
-import SellerSettings from '../seller-module/seller-settings';
-import SellerOrders from '../seller-module/seller-orders';
-import SellerRequests from '../seller-module/seller-requests';
 import TalentDashboard from '../pages/talent-dashboard';
 import TalentMyProfile from '../pages/talent-my-profile';
 import TalentRequests from '../pages/talent-requests';
@@ -86,24 +63,13 @@ import RecruteurMessages from '../pages/recruteur-messages';
 import RecruteurAccount from '../pages/recruteur-account';
 import RecruteurPayment from '../pages/recruteur-payment';
 
-// Test pages imports
-import ApiTest from '../../components/ApiTest';
-import TestNextgen from '../pages/test-nextgen/layout';
-import WelcomePage from '../pages/test-nextgen/pages/welcome';
-import ButtonPage from '../pages/test-nextgen/pages/button-page';
-import CategoryCardPage from '../pages/test-nextgen/pages/category-card-page';
-import UserProfilePage from '../pages/test-nextgen/pages/user-profile-page';
-import ReviewsCarouselPage from '../pages/test-nextgen/pages/reviews-carousel-page';
-import ServiceCardPage from '../pages/test-nextgen/pages/placeholder-page';
-import ProviderCardPage from '../pages/test-nextgen/pages/placeholder-page';
-import OrderStatsCardPage from '../pages/test-nextgen/pages/placeholder-page';
-import StatsCardPage from '../pages/test-nextgen/pages/stats-card-page';
-import CategoryFilterPage from '../pages/test-nextgen/pages/category-filter-page';
 import ModulationShowcase from '../pages/modulation-showcase';
 import ProviderProfile from '../gigs/provider-profile';
 import TalentProfile from '../pages/talent-profile';
 import SearchTalentsPage from '../pages/search-talents';
 import OnboardingPage from '../pages/onboarding';
+import RecruteurRequests from '../pages/recruteur-requests';
+import TalentMessages from '../pages/talent-messages';
 import CheckoutSuccess from '../pages/checkout/checkout-success';
 import CheckoutCancelled from '../pages/checkout/checkout-cancelled';
 
@@ -115,67 +81,6 @@ export const publicRoutes = [
         element: <Home />,
         route: Route,
       },
-      {
-        path: routes.apiTest,
-        element: <ApiTest />,
-        route: Route,
-      },
-      {
-        path: routes.testNextgen,
-        element: <TestNextgen><WelcomePage /></TestNextgen>,
-        route: Route,
-      },
-      {
-        path: routes.testNextgenButton,
-        element: <TestNextgen><ButtonPage /></TestNextgen>,
-        route: Route,
-      },
-      {
-        path: routes.testNextgenCategoryCard,
-        element: <TestNextgen><CategoryCardPage /></TestNextgen>,
-        route: Route,
-      },
-      {
-        path: routes.testNextgenUserProfile,
-        element: <TestNextgen><UserProfilePage /></TestNextgen>,
-        route: Route,
-      },
-      {
-        path: routes.testNextgenReviewsCarousel,
-        element: <TestNextgen><ReviewsCarouselPage /></TestNextgen>,
-        route: Route,
-      },
-      {
-        path: routes.testNextgenServiceCard,
-        element: <TestNextgen><ServiceCardPage /></TestNextgen>,
-        route: Route,
-      },
-      {
-        path: routes.testNextgenProviderCard,
-        element: <TestNextgen><ProviderCardPage /></TestNextgen>,
-        route: Route,
-      },
-      {
-        path: routes.testNextgenOrderStatsCard,
-        element: <TestNextgen><OrderStatsCardPage /></TestNextgen>,
-        route: Route,
-      },
-      {
-        path: routes.testNextgenStatsCard,
-        element: <TestNextgen><StatsCardPage /></TestNextgen>,
-        route: Route,
-      },
-      {
-        path: routes.testNextgenCategoryFilter,
-        element: <TestNextgen><CategoryFilterPage /></TestNextgen>,
-        route: Route,
-      },
-      {
-        path: routes.testNextgenProviderCard,
-        element: <TestNextgen><ProviderCardPage /></TestNextgen>,
-        route: Route,
-      },
-
 
       //pages route
       {
@@ -271,11 +176,6 @@ export const publicRoutes = [
       {
         path: routes.categories2,
         element: <Categories2 />,
-        route: Route,
-      },
-      {
-        path: routes.service,
-        element: <Service />,
         route: Route,
       },
       {
@@ -500,122 +400,6 @@ export const authRoutes = [
   },
   
 ]
-export const buyerRoutes = [
-  {
-    path: routes.buyerDashboard,
-    element: <BuyerRequests />,
-    route: Route,
-  },
-  {
-    path: routes.buyerRequests,
-    element: <BuyerRequests />,
-    route: Route,
-  },
-  {
-    path: routes.buyerOrders,
-    element: <BuyerOrders />,
-    route: Route,
-  },
-  {
-    path: routes.buyerMessages,
-    element: <BuyerMessage />,
-    route: Route,
-  },
-  {
-    path: routes.buyerFavourites,
-    element: <BuyerFavourites />,
-    route: Route,
-  },
-  {
-    path: routes.buyerPayments,
-    element: <BuyerTransactions />,
-    route: Route,
-  },
-  {
-    path: routes.buyerProfile,
-    element: <BuyerProfile />,
-    route: Route,
-  },
-  {
-    path: routes.buyerSettings,
-    element: <BuyerSettings />,
-    route: Route,
-  },
-]
-export const sellerRoutes = [
-  {
-    path: routes.SellerDashboard,
-    element: <SellerDashboard />,
-    route: Route,
-  },
-  {
-    path: routes.sellerMessage,
-    element: <SellerMessage />,
-    route: Route,
-  },
-  {
-    path: routes.sellerNotifications,
-    element: <SellerNotifications />,
-    route: Route,
-  },
-  {
-    path: routes.sellerTransactions,
-    element: <SellerTransactions />,
-    route: Route,
-  },
-  {
-    path: routes.sellerPayouts,
-    element: <SellerPayouts />,
-    route: Route,
-  },
-  {
-    path: routes.sellerEarnings,
-    element: <SellerEarnings />,
-    route: Route,
-  },
-  {
-    path: routes.sellerGigs,
-    element: <SellerGigs />,
-    route: Route,
-  },
-  {
-    path: routes.sellerBuyers,
-    element: <SellerBuyer />,
-    route: Route,
-  },
-  {
-    path: routes.sellerWallets,
-    element: <SellerWallets />,
-    route: Route,
-  },
-  {
-    path: routes.sellerFiles,
-    element: <SellerFiles />,
-    route: Route,
-  },
-  {
-    path: routes.sellerReviews,
-    element: <SellerReviews />,
-    route: Route,
-  },
-  {
-    path: routes.sellerSettings,
-    element: <SellerSettings />,
-    route: Route,
-  },
-  {
-    path: routes.sellerOrders,
-    element: <SellerOrders />,
-    route: Route,
-  },
-  {
-    path: routes.sellerRequests,
-    element: <SellerRequests />,
-    route: Route,
-  },
-
-]
-
 export const talentRoutes = [
   {
     path: routes.talentDashboard,
@@ -632,12 +416,22 @@ export const talentRoutes = [
     element: <TalentRequests />,
     route: Route,
   },
+  {
+    path: routes.talentMessages,
+    element: <TalentMessages />,
+    route: Route,
+  },
 ]
 
 export const recruteurRoutes = [
   {
     path: routes.recruteurTalents,
     element: <RecruteurVisited />,
+    route: Route,
+  },
+  {
+    path: routes.recruteurRequests,
+    element: <RecruteurRequests />,
     route: Route,
   },
   {

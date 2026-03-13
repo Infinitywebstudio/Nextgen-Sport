@@ -849,6 +849,118 @@ $nex-yellow: #FDC00A;
 
   .nex-dash-request__actions {
     flex-direction: column;
+
+    .nex-dash-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .nex-dash-stat {
+    padding: 16px;
+    gap: 12px;
+
+    &__value {
+      font-size: 22px;
+    }
+
+    &__icon {
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+    }
+  }
+
+  .nex-dash-card {
+    &__header {
+      padding: 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    &__body {
+      padding: 16px;
+    }
+
+    &__title {
+      font-size: 16px;
+    }
+  }
+
+  .nex-dash-profile-header {
+    flex-direction: column;
+    text-align: center;
+
+    &__avatar {
+      width: 64px;
+      height: 64px;
+    }
+
+    &__name {
+      font-size: 18px;
+    }
+  }
+
+  .nex-dash-subscription {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .nex-dash-request {
+    padding: 16px;
+
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    &__meta {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  }
+
+  .nex-dash-tabs {
+    gap: 6px;
+
+    &__btn {
+      padding: 6px 14px;
+      font-size: 12px;
+    }
+  }
+
+  .nex-dash-empty {
+    padding: 40px 16px;
+
+    &__title {
+      font-size: 18px;
+    }
+  }
+
+  .nex-subscription-card {
+    padding: 16px;
+
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    &__plan {
+      font-size: 18px;
+    }
+  }
+
+  .nex-dash-form__actions {
+    flex-direction: column;
+
+    .nex-dash-btn {
+      width: 100%;
+      justify-content: center;
+    }
   }
 }
 

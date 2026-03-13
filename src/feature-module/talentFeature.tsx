@@ -20,6 +20,11 @@ const talentItems: SidebarItem[] = [
     icon: "ti-mail",
     path: all_routes.talentRequests,
   },
+  {
+    label: "Messagerie",
+    icon: "ti-message",
+    path: all_routes.talentMessages,
+  },
 ];
 
 const TalentFeature = () => {

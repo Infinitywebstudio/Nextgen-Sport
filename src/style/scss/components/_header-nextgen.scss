@@ -96,6 +96,38 @@ $nex-red: #EE2731;
   }
 }
 
+// Mobile responsive adjustments
+@media (max-width: 575.98px) {
+  .nex-header-btn {
+    font-size: 12px;
+    padding: 8px 14px;
+    gap: 4px;
+
+    // Hide icon text on very small screens, keep icon
+    .ti {
+      margin-right: 0;
+    }
+  }
+
+  .nex-header-logo {
+    font-size: 20px;
+  }
+
+  .header-navbar-rht {
+    .nav-item {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .nex-header-btn {
+    font-size: 13px;
+    padding: 8px 16px;
+  }
+}
+
 // Mobile menu logo
 .menu-header {
   .nex-header-logo {

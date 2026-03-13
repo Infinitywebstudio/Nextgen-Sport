@@ -3,19 +3,6 @@ export const all_routes ={
   // home route
   home: "/",
 
-  // test routes (dev only)
-  apiTest: "/dev/api-test",
-  testNextgen: "/dev/test-nextgen",
-  testNextgenButton: "/dev/test-nextgen/button",
-  testNextgenCategoryCard: "/dev/test-nextgen/category-card",
-  testNextgenUserProfile: "/dev/test-nextgen/user-profile",
-  testNextgenReviewsCarousel: "/dev/test-nextgen/reviews-carousel",
-  testNextgenServiceCard: "/dev/test-nextgen/service-card",
-  testNextgenProviderCard: "/dev/test-nextgen/provider-card",
-  testNextgenOrderStatsCard: "/dev/test-nextgen/order-stats-card",
-  testNextgenStatsCard: "/dev/test-nextgen/stats-card",
-  testNextgenCategoryFilter: "/dev/test-nextgen/category-filter",
-
   // pages routes
   aboutUs:  "/pages/about-us",
   error403: "/pages/error-403",
@@ -85,23 +72,15 @@ contactUsV3: '/contact/contact-us-v3',
 //user-dashboard
 editGigs: '/gigs/edit-gigs',
 
-//buyer Module (Client)
-buyerDashboard : '/buyer/dashboard',
-buyerRequests : '/buyer/demandes',
-buyerOrders : '/buyer/commandes',
-buyerMessages : '/buyer/messagerie',
-buyerFavourites : '/buyer/favoris',
-buyerPayments : '/buyer/paiements',
-buyerProfile : '/buyer/profil',
-buyerSettings : '/buyer/parametres',
-
 //talent Module (NEXTGEN)
 talentDashboard: "/talent/dashboard",
 talentMyProfile: "/talent/profil",
 talentRequests: "/talent/demandes",
+talentMessages: "/talent/messagerie",
 
 //recruteur Module (NEXTGEN)
 recruteurTalents: "/recruteur/talents",
+recruteurRequests: "/recruteur/demandes",
 recruteurMessages: "/recruteur/messagerie",
 recruteurAccount: "/recruteur/compte",
 recruteurPayment: "/recruteur/paiement",
@@ -111,20 +90,5 @@ onboarding: "/onboarding",
 checkoutSuccess: "/checkout/success",
 checkoutCancelled: "/checkout/cancelled",
 
-//seller Module (legacy)
-SellerDashboard:"/seller/seller-dashboard",
-sellerMessage: "/seller/seller-message",
-sellerNotifications: "/seller/seller-notifications",
-sellerTransactions: "/seller/seller-transactions",
-sellerPayouts: "/seller/seller-payouts",
-sellerEarnings: "/seller/seller-earnings",
-sellerGigs:"/seller/seller-gigs",
-sellerBuyers:"/seller/seller-my-buyer",
-sellerWallets:"/seller/seller-wallet",
-sellerFiles:"/seller/seller-files",
-sellerReviews:"/seller/seller-reviews",
-sellerSettings:"/seller/seller-settings",
-sellerOrders:"/seller/seller-orders",
-sellerRequests:"/seller/seller-requests",
 };
 

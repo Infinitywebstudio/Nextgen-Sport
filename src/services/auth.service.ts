@@ -3,7 +3,7 @@
  * Gestion de l'authentification JWT
  */
 
-import { API_ENDPOINTS, getHeaders } from '../config/api.config';
+import { API_CONFIG, API_ENDPOINTS, getHeaders } from '../config/api.config';
 import type { ApiResponse } from './wordpress.service';
 
 // Types
@@ -116,7 +116,7 @@ class AuthService {
         phone: userData.phone,
       };
 
-      console.log('📤 Envoi inscription vers WordPress:', { ...wpData, password: '***' });
+      if (API_CONFIG.DEBUG) console.log('📤 Envoi inscription vers WordPress:', { ...wpData, password: '***' });
 
       const response = await fetch(API_ENDPOINTS.NEXTGEN.REGISTER, {
         method: 'POST',
@@ -136,7 +136,7 @@ class AuthService {
         };
       }
 
-      console.log('✅ Inscription WordPress réussie:', data);
+      if (API_CONFIG.DEBUG) console.log('✅ Inscription WordPress réussie:', data);
 
       // Sauvegarder le type de compte pour les redirections
       localStorage.setItem('nextgen_account_type', userData.account_type);
@@ -145,7 +145,7 @@ class AuthService {
       if (data.token) {
         this.saveToken(data.token);
         await this.fetchUserData();
-        console.log('✅ Auto-login via token d\'inscription');
+        if (API_CONFIG.DEBUG) console.log('✅ Auto-login via token d\'inscription');
       } else if (data.success) {
         // Fallback : login classique si pas de token dans la réponse
         const loginResult = await this.login({
@@ -340,7 +340,7 @@ class AuthService {
         };
       }
 
-      console.log('🔐 Google Auth - Données utilisateur:', {
+      if (API_CONFIG.DEBUG) console.log('🔐 Google Auth - Données utilisateur:', {
         email: googleUserInfo.email,
         name: googleUserInfo.name,
         picture: googleUserInfo.picture,
@@ -374,7 +374,7 @@ class AuthService {
         };
       }
 
-      console.log('✅ Google Auth WordPress réussi:', data);
+      if (API_CONFIG.DEBUG) console.log('✅ Google Auth WordPress réussi:', data);
 
       // Sauvegarder le token et les données utilisateur
       if (data.token) {

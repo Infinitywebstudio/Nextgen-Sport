@@ -78,6 +78,7 @@ export interface Provider {
   bio?: string;
   specialties?: string;
   portfolio?: string[];
+  portfolioUrls?: string;
   // Nouveaux champs pour le profil complet
   registeredDate: string;
   missionsCount: number;
@@ -207,6 +208,7 @@ function transformWordPressProvider(wpProvider: any): Provider {
     bio: wpProvider.acf?.bio || '',
     specialties: wpProvider.acf?.specialties || '',
     portfolio,
+    portfolioUrls: wpProvider.acf?.portfolio_urls || '',
     registeredDate,
     missionsCount: parseInt(String(missionsCount)) || 0,
     responseTime,
@@ -218,7 +220,7 @@ function transformWordPressProvider(wpProvider: any): Provider {
  */
 export async function fetchProviders(): Promise<Provider[]> {
   try {
-    console.log('Fetching providers from:', `${NEXTGEN_API_URL}/providers`);
+    if (API_CONFIG.DEBUG) console.log('Fetching providers from:', `${NEXTGEN_API_URL}/providers`);
 
     const response = await fetch(`${NEXTGEN_API_URL}/providers?per_page=100`, {
       method: 'GET',
@@ -232,7 +234,7 @@ export async function fetchProviders(): Promise<Provider[]> {
     }
 
     const data = await response.json();
-    console.log(`${data.length} prestataires récupérés depuis WordPress`);
+    if (API_CONFIG.DEBUG) console.log(`${data.length} prestataires récupérés depuis WordPress`);
 
     return data.map(transformWordPressProvider);
   } catch (error) {
@@ -246,7 +248,7 @@ export async function fetchProviders(): Promise<Provider[]> {
  */
 export async function fetchProviderById(id: number): Promise<Provider> {
   try {
-    console.log('Fetching provider by ID:', id);
+    if (API_CONFIG.DEBUG) console.log('Fetching provider by ID:', id);
 
     // Récupérer tous les prestataires et filtrer par ID
     const allProviders = await fetchProviders();
@@ -256,7 +258,7 @@ export async function fetchProviderById(id: number): Promise<Provider> {
       throw new Error(`Provider with ID ${id} not found`);
     }
 
-    console.log('Provider found:', provider);
+    if (API_CONFIG.DEBUG) console.log('Provider found:', provider);
     return provider;
   } catch (error) {
     console.error(`Erreur lors de la récupération du prestataire ${id}:`, error);

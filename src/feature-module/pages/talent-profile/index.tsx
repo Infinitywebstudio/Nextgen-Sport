@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { Modal, Form } from 'react-bootstrap';
 import {
   MapPin,
   Star,
@@ -16,6 +17,7 @@ import {
   Home,
   Crosshair,
   Loader,
+  Send,
 } from 'lucide-react';
 import { all_routes } from '../../router/all_routes';
 import { fetchProviderById, type Provider } from '../../../services/providerService';
@@ -23,6 +25,7 @@ import authService from '../../../services/auth.service';
 import dashboardService from '../../../services/dashboard.service';
 import UpgradePrompt from '../../../components/UpgradePrompt';
 import talentPlaceholder from '../../../assets/img/homepage/talent-placeholder.webp';
+import { parseVideoUrls } from '../../../utils/video';
 
 const strengthIcons: Record<string, React.ReactNode> = {
   eye: <Eye size={24} />,
@@ -39,6 +42,27 @@ const TalentProfile = () => {
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>('vue-generale');
   const [quotaReached, setQuotaReached] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [contactMessage, setContactMessage] = useState('');
+  const [contactSending, setContactSending] = useState(false);
+  const [contactResult, setContactResult] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  const isRecruteur = authService.isClient();
+
+  const handleSendRequest = async () => {
+    if (!contactMessage.trim() || !talent) return;
+    setContactSending(true);
+    setContactResult(null);
+    const result = await dashboardService.createRequest(talent.id, contactMessage.trim());
+    if (result.success) {
+      setContactResult({ type: 'success', text: 'Demande envoyée avec succès !' });
+      setContactMessage('');
+      setTimeout(() => setShowContactModal(false), 1500);
+    } else {
+      setContactResult({ type: 'error', text: result.error || 'Erreur lors de l\'envoi' });
+    }
+    setContactSending(false);
+  };
 
   useEffect(() => {
     const loadTalent = async () => {
@@ -208,9 +232,15 @@ const TalentProfile = () => {
 
               {/* Actions */}
               <div className="nex-tp-sidebar__actions">
-                <Link to={all_routes.signUp} className="nex-tp-sidebar__btn-primary">
-                  <MessageCircle size={18} /> Contacter
-                </Link>
+                {isRecruteur ? (
+                  <button className="nex-tp-sidebar__btn-primary" onClick={() => { setContactResult(null); setShowContactModal(true); }}>
+                    <Send size={18} /> Contacter ce talent
+                  </button>
+                ) : (
+                  <Link to={authService.isAuthenticated() ? '#' : all_routes.signUp} className="nex-tp-sidebar__btn-primary">
+                    <MessageCircle size={18} /> Contacter
+                  </Link>
+                )}
                 <button
                   className="nex-tp-sidebar__btn-secondary"
                   onClick={() => navigator.clipboard?.writeText(window.location.href)}
@@ -329,22 +359,87 @@ const TalentProfile = () => {
             )}
 
             {/* === TAB: HIGHLIGHTS === */}
-            {activeTab === 'highlights' && (
-              <div className="nex-tp-tab-content">
-                <div className="nex-tp-videos-header">
-                  <h2 className="nex-title">Vidéos Highlights</h2>
+            {activeTab === 'highlights' && (() => {
+              const videos = parseVideoUrls(talent.portfolioUrls);
+              return (
+                <div className="nex-tp-tab-content">
+                  <div className="nex-tp-videos-header">
+                    <h2 className="nex-title">Vidéos Highlights</h2>
+                    {videos.length > 0 && (
+                      <span className="nex-tp-videos-header__count">{videos.length} vidéo{videos.length > 1 ? 's' : ''}</span>
+                    )}
+                  </div>
+                  {videos.length === 0 ? (
+                    <div className="nex-search-results__empty" style={{ padding: '3rem 0' }}>
+                      <Play size={48} />
+                      <h3 className="nex-title">Aucune vidéo pour le moment</h3>
+                      <p>Ce talent n'a pas encore ajouté de vidéos highlights.</p>
+                    </div>
+                  ) : (
+                    <div className="nex-tp-videos-grid">
+                      {videos.map(video => (
+                        <div key={video.id} className="nex-tp-video-card">
+                          <div className="nex-tp-video-card__thumb">
+                            <iframe
+                              src={video.embedUrl}
+                              title={`Highlight ${video.id}`}
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                              style={{ width: '100%', height: '100%', border: 'none' }}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <div className="nex-search-results__empty" style={{ padding: '3rem 0' }}>
-                  <Play size={48} />
-                  <h3 className="nex-title">Aucune vidéo pour le moment</h3>
-                  <p>Ce talent n'a pas encore ajouté de vidéos highlights.</p>
-                </div>
-              </div>
-            )}
+              );
+            })()}
 
           </main>
         </div>
       </div>
+
+      {/* Modal de contact recruteur */}
+      <Modal show={showContactModal} onHide={() => setShowContactModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Contacter {talent.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Group>
+            <Form.Label>Votre message</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={4}
+              value={contactMessage}
+              onChange={(e) => setContactMessage(e.target.value)}
+              placeholder="Décrivez votre intérêt pour ce talent, le poste proposé, etc."
+            />
+          </Form.Group>
+          {contactResult && (
+            <div
+              className="nex-auth-error"
+              style={contactResult.type === 'success' ? { background: 'rgba(39,174,96,0.06)', borderColor: 'rgba(39,174,96,0.2)', marginTop: 12 } : { marginTop: 12 }}
+            >
+              <p style={contactResult.type === 'success' ? { color: '#27AE60' } : undefined}>
+                {contactResult.text}
+              </p>
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <button className="nex-tp-sidebar__btn-secondary" onClick={() => setShowContactModal(false)}>
+            Annuler
+          </button>
+          <button
+            className="nex-tp-sidebar__btn-primary"
+            onClick={handleSendRequest}
+            disabled={contactSending || !contactMessage.trim()}
+          >
+            {contactSending ? 'Envoi...' : 'Envoyer la demande'}
+          </button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

@@ -141,13 +141,6 @@ const TalentRequests = () => {
                 </span>
               </div>
               <p className="nex-dash-request__message">{request.message}</p>
-              {request.budget && (
-                <div className="nex-dash-request__meta">
-                  <span>
-                    <i className="ti ti-currency-euro" /> {request.budget}
-                  </span>
-                </div>
-              )}
               {request.status === "pending" ? (
                 <div className="nex-dash-request__actions">
                   <button

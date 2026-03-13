@@ -36,6 +36,7 @@ export interface ActivityItem {
   title: string;
   description: string;
   time: string;
+  created_at?: string;
 }
 
 export interface ExperienceItem {
@@ -91,13 +92,34 @@ export interface Message {
   created_at: string;
 }
 
+export interface OpportunityItem {
+  id: number;
+  recruiter_id: number;
+  club: string;
+  title: string;
+  message: string;
+  recruiter_avatar: string;
+  status: 'pending';
+  created_at: string;
+  date: string;
+}
+
 export interface TalentRequest {
   id: number;
   recruiter_id: number;
   recruiter_name: string;
   recruiter_avatar: string;
   message: string;
-  budget: string;
+  status: 'pending' | 'accepted' | 'declined';
+  created_at: string;
+}
+
+export interface RecruteurRequest {
+  id: number;
+  talent_id: number;
+  talent_name: string;
+  talent_avatar: string;
+  message: string;
   status: 'pending' | 'accepted' | 'declined';
   created_at: string;
 }
@@ -207,6 +229,69 @@ class DashboardService {
   }
 
   // ----------------------------------------------------------
+  // TALENT - Activity
+  // ----------------------------------------------------------
+
+  async getTalentActivity(): Promise<DashboardResponse<ActivityItem[]>> {
+    return this.request<ActivityItem[]>(API_ENDPOINTS.DASHBOARD.TALENT_ACTIVITY);
+  }
+
+  // ----------------------------------------------------------
+  // TALENT - Experience
+  // ----------------------------------------------------------
+
+  async getTalentExperience(): Promise<DashboardResponse<ExperienceItem[]>> {
+    return this.request<ExperienceItem[]>(API_ENDPOINTS.DASHBOARD.TALENT_EXPERIENCE);
+  }
+
+  async addExperience(data: Omit<ExperienceItem, 'id'> & { id?: string }): Promise<DashboardResponse<{ success: boolean; experience: ExperienceItem }>> {
+    return this.request(API_ENDPOINTS.DASHBOARD.TALENT_EXPERIENCE, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async deleteExperience(expId: string): Promise<DashboardResponse<{ success: boolean }>> {
+    return this.request(API_ENDPOINTS.DASHBOARD.TALENT_EXPERIENCE_DELETE(expId), {
+      method: 'DELETE',
+    });
+  }
+
+  // ----------------------------------------------------------
+  // TALENT - Opportunities
+  // ----------------------------------------------------------
+
+  async getTalentOpportunities(): Promise<DashboardResponse<OpportunityItem[]>> {
+    return this.request<OpportunityItem[]>(API_ENDPOINTS.DASHBOARD.TALENT_OPPORTUNITIES);
+  }
+
+  async respondToOpportunity(id: number, status: 'accepted' | 'declined'): Promise<DashboardResponse<{ success: boolean; status: string }>> {
+    return this.request(API_ENDPOINTS.DASHBOARD.TALENT_OPPORTUNITY(id), {
+      method: 'PUT',
+      body: JSON.stringify({ status }),
+    });
+  }
+
+  // ----------------------------------------------------------
+  // TALENT - Conversations
+  // ----------------------------------------------------------
+
+  async getTalentConversations(): Promise<DashboardResponse<Conversation[]>> {
+    return this.request<Conversation[]>(API_ENDPOINTS.DASHBOARD.TALENT_CONVERSATIONS);
+  }
+
+  async getTalentMessages(conversationId: number): Promise<DashboardResponse<Message[]>> {
+    return this.request<Message[]>(API_ENDPOINTS.DASHBOARD.TALENT_CONVERSATION(conversationId));
+  }
+
+  async sendTalentMessage(conversationId: number, message: string): Promise<DashboardResponse<{ success: boolean; message_id: number }>> {
+    return this.request(API_ENDPOINTS.DASHBOARD.TALENT_CONVERSATION(conversationId), {
+      method: 'POST',
+      body: JSON.stringify({ message }),
+    });
+  }
+
+  // ----------------------------------------------------------
   // TALENT - Requests
   // ----------------------------------------------------------
 
@@ -224,11 +309,15 @@ class DashboardService {
     });
   }
 
-  async createRequest(talentId: number, message: string, budget?: string): Promise<DashboardResponse<{ success: boolean; request_id: number }>> {
+  async createRequest(talentId: number, message: string): Promise<DashboardResponse<{ success: boolean; request_id: number }>> {
     return this.request(API_ENDPOINTS.DASHBOARD.RECRUTEUR_REQUEST, {
       method: 'POST',
-      body: JSON.stringify({ talent_id: talentId, message, budget }),
+      body: JSON.stringify({ talent_id: talentId, message }),
     });
+  }
+
+  async getRecruteurRequests(): Promise<DashboardResponse<RecruteurRequest[]>> {
+    return this.request<RecruteurRequest[]>(API_ENDPOINTS.DASHBOARD.RECRUTEUR_REQUEST);
   }
 
   // ----------------------------------------------------------

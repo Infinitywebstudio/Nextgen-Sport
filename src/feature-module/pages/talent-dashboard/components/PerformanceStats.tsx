@@ -16,11 +16,11 @@ const PerformanceStats = ({ stats }: PerformanceStatsProps) => {
   ];
 
   return (
-    <div className="dashboard-card stats-card">
-      <div className="card-header">
-        <h2><i className="ti ti-chart-dots" /> Statistiques de performance</h2>
+    <div className="nex-dash-card td-perf-card">
+      <div className="nex-dash-card__header">
+        <h3 className="nex-dash-card__title"><i className="ti ti-chart-dots" /> Statistiques</h3>
         <select
-          className="period-select"
+          className="td-period-select"
           value={period}
           onChange={e => setPeriod(e.target.value)}
         >
@@ -29,17 +29,17 @@ const PerformanceStats = ({ stats }: PerformanceStatsProps) => {
           <option value="total">Carrière</option>
         </select>
       </div>
-      <div className="card-body">
-        <div className="stats-grid">
+      <div className="nex-dash-card__body">
+        <div className="td-perf-grid">
           {statBoxes.map((box, index) => (
-            <div className={`stat-box${box.highlight ? ' highlight' : ''}`} key={index}>
+            <div className={`td-perf-box${box.highlight ? ' td-perf-box--highlight' : ''}`} key={index}>
               <i className={box.icon} />
               <h3>{box.value}</h3>
               <p>{box.label}</p>
             </div>
           ))}
         </div>
-        <div className="performance-chart">
+        <div className="td-perf-chart">
           <span>Graphique de performance (bientôt disponible)</span>
         </div>
       </div>
