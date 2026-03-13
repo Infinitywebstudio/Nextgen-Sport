@@ -12,6 +12,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Vérifie si l'origin est autorisée pour CORS.
+ * En dev : tout localhost (n'importe quel port).
+ * En prod : uniquement NEXGEN_FRONTEND_URL.
+ */
+function nextgen_get_allowed_origin( $origin ) {
+    // Toujours autoriser l'URL de prod si définie
+    if ( defined( 'NEXGEN_FRONTEND_URL' ) && $origin === NEXGEN_FRONTEND_URL ) {
+        return $origin;
+    }
+    // En dev : accepter tout localhost:*
+    if ( preg_match( '#^https?://localhost(:\d+)?$#', $origin ) ) {
+        return $origin;
+    }
+    // Fallback
+    return 'http://localhost:5173';
+}
+
+/**
  * Configuration CORS pour React Frontend
  */
 add_action( 'rest_api_init', function() {
@@ -20,7 +38,9 @@ add_action( 'rest_api_init', function() {
 
     // Ajouter nos propres headers CORS
     add_filter( 'rest_pre_serve_request', function( $value ) {
-        header( 'Access-Control-Allow-Origin: *' );
+        $origin = isset( $_SERVER['HTTP_ORIGIN'] ) ? $_SERVER['HTTP_ORIGIN'] : '';
+        $allowed_origin = nextgen_get_allowed_origin( $origin );
+        header( 'Access-Control-Allow-Origin: ' . $allowed_origin );
         header( 'Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS' );
         header( 'Access-Control-Allow-Credentials: true' );
         header( 'Access-Control-Allow-Headers: Authorization, Content-Type, X-WP-Nonce' );
@@ -34,7 +54,9 @@ add_action( 'rest_api_init', function() {
  */
 add_action( 'rest_api_init', function() {
     if ( $_SERVER['REQUEST_METHOD'] === 'OPTIONS' ) {
-        header( 'Access-Control-Allow-Origin: *' );
+        $origin = isset( $_SERVER['HTTP_ORIGIN'] ) ? $_SERVER['HTTP_ORIGIN'] : '';
+        $allowed_origin = nextgen_get_allowed_origin( $origin );
+        header( 'Access-Control-Allow-Origin: ' . $allowed_origin );
         header( 'Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS' );
         header( 'Access-Control-Allow-Headers: Authorization, Content-Type, X-WP-Nonce' );
         exit;

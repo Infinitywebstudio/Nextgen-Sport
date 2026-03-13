@@ -1,0 +1,11 @@
+{
+    "name": "nexgen/wp-nexgen",
+    "description": "NEXGEN Sport - WordPress Backend",
+    "type": "project",
+    "require": {
+        "stripe/stripe-php": "^16.0"
+    },
+    "config": {
+        "vendor-dir": "wp-content/vendor"
+    }
+}

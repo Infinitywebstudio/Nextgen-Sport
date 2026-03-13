@@ -4,3 +4,12 @@ app/public/wp-content/wpvividbackups/
 
 # Database dumps
 *.sql
+
+# Debug logs
+app/public/wp-content/debug.log
+
+# Uploads (media files)
+app/public/wp-content/uploads/
+
+# Local environment
+app/public/.htaccess
